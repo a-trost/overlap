@@ -74,8 +74,8 @@ const CounterWrapper = styled.div`
 const LinkButton = styled.a`
   border: none;
   text-decoration: none;
-  background-color: #57b660;
-  color: white;
+  background-color: ${props => props.bgColor || "#F0C043"};
+  color: ${props => props.textColor || "white"}
   padding: 1rem 3rem;
   font-size: 16px;
 `;
@@ -147,11 +147,27 @@ export default class Countdown extends Component {
           <Column number={this.state.seconds} label="Seconds" color="#B12E1B" />
         </CounterWrapper>
         <TempPlayer />
+        <h3>Subscribe wherever you get your podcasts!</h3>
         <LinkButton
           href="https://open.spotify.com/show/51Z2Ak2g3SwTBsd4GfAaH2?si=XetqwmmtSc6qujZ8RPbo_A"
           target="_blank"
         >
           Spotify
+        </LinkButton>
+        <LinkButton
+          bgColor="#333333"
+          href="https://www.stitcher.com/s?fid=382097&refid=stpr"
+          target="_blank"
+        >
+          Stitcher
+        </LinkButton>
+        <LinkButton
+          bgColor="#1D1F3A"
+          textColor="#64D4CB"
+          href="https://tunein.com/podcasts/Education-Podcasts/The-Overlap-p1210323/"
+          target="_blank"
+        >
+          TuneIn
         </LinkButton>
       </Wrapper>
     );
