@@ -75,7 +75,7 @@ const LinkButton = styled.a`
   border: none;
   text-decoration: none;
   background-color: ${props => props.bgColor || "#F0C043"};
-  color: ${props => props.textColor || "white"}
+  color: ${props => props.textColor || "white"};
   padding: 1rem 3rem;
   font-size: 16px;
 `;
