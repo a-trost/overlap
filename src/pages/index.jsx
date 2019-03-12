@@ -1,10 +1,12 @@
 import React from "react";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
+import styled from "styled-components";
 import Layout from "../layout";
 import PostListing from "../components/PostListing/PostListing";
 import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
+import Countdown from "../components/Countdown";
 
 class Index extends React.Component {
   render() {
@@ -14,7 +16,8 @@ class Index extends React.Component {
         <div className="index-container">
           <Helmet title={config.siteTitle} />
           <SEO />
-          <PostListing postEdges={postEdges} />
+          <Countdown />
+          {/* <PostListing postEdges={postEdges} /> */}
         </div>
       </Layout>
     );
