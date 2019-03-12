@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import Helmet from "react-helmet";
 import urljoin from "url-join";
 import config from "../../../data/SiteConfig";
-import favicon16 from "./favicon@16.png";
-import favicon32 from "./favicon@32.png";
-import favicon64 from "./favicon@64.png";
 import overlapImage from "../../../static/logos/logo-1024.png";
 
 class SEO extends Component {
@@ -71,21 +68,7 @@ class SEO extends Component {
     }
     return (
       <Helmet
-      link={[
-        {
-          rel: "icon",
-          type: "image/png",
-          sizes: "16x16",
-          href: `${favicon16}`
-        },
-        {
-          rel: "icon",
-          type: "image/png",
-          sizes: "32x32",
-          href: `${favicon32}`
-        },
-        { rel: "shortcut icon", type: "image/png", href: `${favicon64}` }
-      ]}
+     
       >
         {/* General tags */}
         <meta name="description" content={description} />
