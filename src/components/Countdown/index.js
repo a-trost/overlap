@@ -147,7 +147,7 @@ export default class Countdown extends Component {
           <Colon />
           <Column number={this.state.seconds} label="Seconds" color="#B12E1B" />
         </CounterWrapper>
-        {/* <TempPlayer /> */}
+        <TempPlayer />
         <LinkButton
           href="https://open.spotify.com/show/51Z2Ak2g3SwTBsd4GfAaH2?si=XetqwmmtSc6qujZ8RPbo_A"
           target="_blank"
