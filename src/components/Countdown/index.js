@@ -78,7 +78,7 @@ const LinkButton = styled.a`
   color: ${props => props.textColor || "white"};
   padding: 1rem 3rem;
   font-size: 16px;
-  margin: 0 0.5rem;
+  margin: 0.5rem;
 `;
 
 const ButtonContainer = styled.div`
