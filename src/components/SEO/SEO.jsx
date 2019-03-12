@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Helmet from "react-helmet";
 import urljoin from "url-join";
 import config from "../../../data/SiteConfig";
+import favicon16 from "../../../static/images/favicon@16.png";
+import favicon32 from "../../../static/images/favicon@32.png";
+import favicon64 from "../../../static/images/favicon@64.png";
 
 class SEO extends Component {
   render() {
@@ -68,7 +71,23 @@ class SEO extends Component {
       );
     }
     return (
-      <Helmet>
+      <Helmet
+      link={[
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "16x16",
+          href: `${favicon16}`
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "32x32",
+          href: `${favicon32}`
+        },
+        { rel: "shortcut icon", type: "image/png", href: `${favicon64}` }
+      ]}
+      >
         {/* General tags */}
         <meta name="description" content={description} />
         <meta name="image" content={image} />
