@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import Helmet from "react-helmet";
 import urljoin from "url-join";
 import config from "../../../data/SiteConfig";
-import overlapImage from "../../../static/logos/logo-1024.png";
 
 class SEO extends Component {
   render() {
     const { postNode, postPath, postSEO } = this.props;
     let title;
     let description;
-    let image = overlapImage
+    let image;
     let postURL;
     if (postSEO) {
       const postMeta = postNode.frontmatter;
@@ -17,10 +16,12 @@ class SEO extends Component {
       description = postMeta.description
         ? postMeta.description
         : postNode.excerpt;
+      image = postMeta.cover;
       postURL = urljoin(config.siteUrl, config.pathPrefix, postPath);
     } else {
       title = config.siteTitle;
       description = config.siteDescription;
+      image = config.siteLogo;
     }
 
     image = urljoin(config.siteUrl, config.pathPrefix, image);
@@ -67,9 +68,7 @@ class SEO extends Component {
       );
     }
     return (
-      <Helmet
-     
-      >
+      <Helmet>
         {/* General tags */}
         <meta name="description" content={description} />
         <meta name="image" content={image} />
