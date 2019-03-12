@@ -2,13 +2,17 @@ import React, { Component } from "react";
 import Helmet from "react-helmet";
 import urljoin from "url-join";
 import config from "../../../data/SiteConfig";
+import favicon16 from "../../../static/images/favicon@16.png";
+import favicon32 from "../../../static/images/favicon@32.png";
+import favicon64 from "../../../static/images/favicon@64.png";
+import overlapLogo from "../../../static/logos/logo-1024.png";
 
 class SEO extends Component {
   render() {
     const { postNode, postPath, postSEO } = this.props;
     let title;
     let description;
-    let image;
+    let image= overlapLogo;
     let postURL;
     if (postSEO) {
       const postMeta = postNode.frontmatter;
@@ -16,12 +20,10 @@ class SEO extends Component {
       description = postMeta.description
         ? postMeta.description
         : postNode.excerpt;
-      image = postMeta.cover;
       postURL = urljoin(config.siteUrl, config.pathPrefix, postPath);
     } else {
       title = config.siteTitle;
       description = config.siteDescription;
-      image = config.siteLogo;
     }
 
     image = urljoin(config.siteUrl, config.pathPrefix, image);
@@ -68,7 +70,23 @@ class SEO extends Component {
       );
     }
     return (
-      <Helmet>
+      <Helmet
+      link={[
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "16x16",
+          href: `${favicon16}`
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "32x32",
+          href: `${favicon32}`
+        },
+        { rel: "shortcut icon", type: "image/png", href: `${favicon64}` }
+      ]}
+      >
         {/* General tags */}
         <meta name="description" content={description} />
         <meta name="image" content={image} />
