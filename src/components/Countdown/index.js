@@ -12,7 +12,6 @@ const Wrapper = styled.section`
   align-items: center;
   padding: 1rem;
   margin-top: 2rem;
-  font-family: "Proxima Nova", sans-serif;
   .description {
     font-size: 2.1vw;
     margin-top: 2rem;

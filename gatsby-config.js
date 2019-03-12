@@ -94,14 +94,6 @@ module.exports = {
         ]
       }
     },
-    {
-      resolve: "gatsby-plugin-web-font-loader",
-      options: {
-        google: {
-          families: ["Proxima Nova:400,700"]
-        }
-      }
-    },
     "gatsby-plugin-offline",
     {
       resolve: "gatsby-plugin-feed",
