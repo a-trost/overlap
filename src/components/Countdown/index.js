@@ -78,12 +78,15 @@ const LinkButton = styled.a`
   color: ${props => props.textColor || "white"};
   padding: 1rem 3rem;
   font-size: 16px;
+  margin: 0 0.5rem;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   width: 100%;
   flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Colon = () => <div className="colon" />;
@@ -156,6 +159,7 @@ export default class Countdown extends Component {
         <h3>Subscribe wherever you get your podcasts!</h3>
         <ButtonContainer>
           <LinkButton
+            bgColor="#65D36E"
             href="https://open.spotify.com/show/51Z2Ak2g3SwTBsd4GfAaH2?si=XetqwmmtSc6qujZ8RPbo_A"
             target="_blank"
           >
