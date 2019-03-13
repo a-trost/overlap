@@ -5,7 +5,7 @@ import config from "../../../data/SiteConfig";
 import favicon16 from "../../../static/images/favicon@16.png";
 import favicon32 from "../../../static/images/favicon@32.png";
 import favicon64 from "../../../static/images/favicon@64.png";
-import overlapLogo from "../../../static/logos/logo-1024.png";
+import overlapLogo from "../../../static/logos/Logo-2048.png";
 
 class SEO extends Component {
   render() {
