@@ -52,7 +52,7 @@ const CounterWrapper = styled.div`
     width: 2ch;
     font-size: 8vw;
     font-weight: 700;
-    color: #b12e1b;
+    color: #d73721;
     line-height: 1;
     .label {
       font-size: 2vw;
@@ -78,8 +78,10 @@ const LinkButton = styled.a`
   color: ${props => props.textColor || "white"};
   padding: 1rem 3rem;
   font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   margin: 0.5rem;
-  border: 1px solid ${props => props.bgColor || "#F0C043"};
+  border: 1.5px solid ${props => props.bgColor || "#F0C043"};
   transition: all ease 0.3s;
   position: relative;
   &:hover {
@@ -191,6 +193,23 @@ export default class Countdown extends Component {
             target="_blank"
           >
             TuneIn
+          </LinkButton>
+          <LinkButton
+            bgColor="#D8503F"
+            textColor="#ffffff"
+            href="https://play.google.com/music/m/Ikduxmrnugh255jld7l2zypzlhq?t=The_Overlap"
+            target="_blank"
+          >
+            Google
+          </LinkButton>
+
+          <LinkButton
+            bgColor="#EB9C4E"
+            textColor="#ffffff"
+            href="https://feeds.buzzsprout.com/255972.rss"
+            target="_blank"
+          >
+            RSS
           </LinkButton>
         </ButtonContainer>
         <TempPlayer />
