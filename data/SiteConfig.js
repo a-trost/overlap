@@ -6,7 +6,7 @@ const config = {
   siteUrl: "https://www.theoverlappodcast.com", // Domain of your website without pathPrefix.
   pathPrefix: "", // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
   siteDescription:
-    "A podcast for Graphic Designers, Web Developers and everyone inbetween.", // Website description used for RSS feeds/meta description tag.
+    "The Overlap is a podcast that explores the intersection of Design and Front End Development. On the show we discuss all things design and development in a fun and easy-to-listen-to way. Some topics we cover are typography, React, productivity, focus, designing for print, freelancing tips, and much more.", // Website description used for RSS feeds/meta description tag.
   siteRss: "/rss.xml", // Path to the RSS file.
   siteFBAppID: "", // FB Application ID for using app insights
   googleAnalyticsID: "", // GA tracking ID.
