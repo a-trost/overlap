@@ -11,7 +11,6 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  margin-top: 2rem;
   .description {
     font-size: 2.1vw;
     margin-top: 2rem;
@@ -58,15 +57,23 @@ const CounterWrapper = styled.div`
     justify-content: center;
     align-items: center;
     width: 2ch;
-    font-size: 10vw;
+    font-size: 8vw;
     font-weight: 700;
     color: #b12e1b;
     line-height: 1;
     .label {
-      font-size: 2.5vw;
+      font-size: 2vw;
       text-transform: uppercase;
       font-weight: 400;
       color: #8f979c;
+    }
+  }
+  @media all and (max-width: 700px) {
+    .column {
+      font-size: 50px;
+      .label {
+        font-size: 14px;
+      }
     }
   }
 `;
@@ -155,7 +162,8 @@ export default class Countdown extends Component {
       <Wrapper>
         <Logo src={logo} alt="Logo" />
         <span className="description">
-          A Design and Web Development Podcast
+          A Design and Web Development Podcast <br />
+          Launching March 19th
         </span>
         <CounterWrapper>
           <Column number={this.state.days} label="Days" color="#1DA59B" />
@@ -166,8 +174,7 @@ export default class Countdown extends Component {
           <Colon />
           <Column number={this.state.seconds} label="Seconds" color="#B12E1B" />
         </CounterWrapper>
-        <TempPlayer />
-        <h3>Subscribe wherever you get your podcasts!</h3>
+        <h2>Subscribe wherever you get your podcasts!</h2>
         <ButtonContainer>
           <LinkButton
             bgColor="#65D36E"
@@ -193,6 +200,7 @@ export default class Countdown extends Component {
             TuneIn
           </LinkButton>
         </ButtonContainer>
+        <TempPlayer />
       </Wrapper>
     );
   }
