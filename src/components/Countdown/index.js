@@ -79,6 +79,17 @@ const LinkButton = styled.a`
   padding: 1rem 3rem;
   font-size: 16px;
   margin: 0.5rem;
+  border: 1px solid ${props => props.bgColor || "#F0C043"};
+  transition: all ease 0.3s;
+  position: relative;
+  &:hover {
+    color: ${props => props.bgColor || "#F0C043"};
+    background-color: ${props => props.textColor || "white"};
+    border-color: ${props => props.bgColor || "#F0C043"};
+  }
+  &:active {
+    top: 2px;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -167,6 +178,7 @@ export default class Countdown extends Component {
           </LinkButton>
           <LinkButton
             bgColor="#333333"
+            textColor="#F0C043"
             href="https://www.stitcher.com/s?fid=382097&refid=stpr"
             target="_blank"
           >
