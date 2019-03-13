@@ -95,41 +95,17 @@ class SEO extends Component {
         <script type="application/ld+json">
           {JSON.stringify(schemaOrgJSONLD)}
         </script>
-{/* 
 
-        <meta property="og:url" content={postSEO ? postURL : blogURL} />
-        {postSEO ? <meta property="og:type" content="article" /> : null}
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={image} />
-        <meta
-          property="fb:app_id"
-          content={config.siteFBAppID ? config.siteFBAppID : ""}
-        />
-
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:creator"
-          content={config.userTwitter ? config.userTwitter : ""}
-        />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={image} /> */} 
-
-        <!-- Primary Meta Tags -->
 <title>The Overlap Podcast - Design and Web Dev</title>
 <meta name="title" content="The Overlap Podcast - Design and Web Dev">
 <meta name="description" content="The Overlap is a podcast that explores the intersection of Design and Front End Development. On the show we discuss all things design and development in a fun and easy-to-listen-to way. Some topics we cover are typography, React, productivity, focus, designing for print, freelancing tips, and much more. ">
 
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.overlappodcast.com/">
 <meta property="og:title" content="The Overlap Podcast - Design and Web Dev">
 <meta property="og:description" content="The Overlap is a podcast that explores the intersection of Design and Front End Development. On the show we discuss all things design and development in a fun and easy-to-listen-to way. Some topics we cover are typography, React, productivity, focus, designing for print, freelancing tips, and much more. ">
 <meta property="og:image" content={overlapLogo}>
 
-<!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://www.overlappodcast.com/">
 <meta property="twitter:title" content="The Overlap Podcast - Design and Web Dev">
