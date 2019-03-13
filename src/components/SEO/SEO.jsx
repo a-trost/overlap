@@ -122,13 +122,13 @@ class SEO extends Component {
 <meta property="og:url" content="https://www.overlappodcast.com/"/>
 <meta property="og:title" content="The Overlap Podcast - Design and Web Dev"/>
 <meta property="og:description" content="A podcast for Graphic Designers, Web Developers and everyone inbetween."/>
-<meta property="og:image" content="https://www.theoverlappodcast.com//static/Logo-2048-92fc0fc24229329f44a6373870ac25b3.png"/>
+<meta property="og:image" content={overlapLogo}/>
 
 <meta property="twitter:card" content="summary_large_image"/>
 <meta property="twitter:url" content="https://www.overlappodcast.com/"/>
 <meta property="twitter:title" content="The Overlap Podcast - Design and Web Dev"/>
 <meta property="twitter:description" content="A podcast for Graphic Designers, Web Developers and everyone inbetween."/>
-<meta property="twitter:image" content="https://www.theoverlappodcast.com//static/Logo-2048-92fc0fc24229329f44a6373870ac25b3.png"/>
+<meta property="twitter:image" content={overlapLogo}/>
       </Helmet>
     );
   }
