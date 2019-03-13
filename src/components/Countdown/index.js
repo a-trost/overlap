@@ -42,14 +42,7 @@ const CounterWrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
   .colon {
-    display: flex;
-    flex-flow: column nowrap;
-    /* justify-content: center; */
-    align-items: center;
-    font-size: 9.5vw;
-    margin: 0 2vw;
-    color: #6a7176;
-    line-height: 1;
+    margin: 0 1.5vw;
   }
   .column {
     display: flex;
