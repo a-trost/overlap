@@ -36,6 +36,20 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-source-rss-feed`,
+      options: {
+        url: `https://feeds.buzzsprout.com/255972.rss`,
+        name: `OverlapPodcast`
+        // Optional
+        // Read parser document: https://github.com/bobby-brennan/rss-parser#readme
+        // parserOption: {
+        //   customFields: {
+        //     item: ['itunes:duration']
+        //   }
+        // }
+      }
+    },
+    {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
