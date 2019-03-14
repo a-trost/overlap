@@ -22,8 +22,9 @@ const Wrapper = styled.section`
     padding: 1rem;
     margin: 1rem;
     width: 75%;
-    iframe {
-    }
+  }
+  h2 {
+    text-align: center;
   }
   @media all and (max-width: 700px) {
     .description {
@@ -76,7 +77,7 @@ const LinkButton = styled.a`
   text-decoration: none;
   background-color: ${props => props.bgColor || "#F0C043"};
   color: ${props => props.textColor || "white"};
-  padding: 1rem 3rem;
+  padding: 0.75rem 2.5rem;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.5px;
