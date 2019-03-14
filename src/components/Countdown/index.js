@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import logo from "../../../static/images/overlapLogoNoTagline.svg";
 import styled from "styled-components";
+import logo from "../../../static/images/overlapLogoNoTagline.svg";
+import LinkButtons from "../../components/LinkButtons";
 
 const countDownDate = new Date("Mar 19, 2019 12:00:00").getTime();
 
@@ -77,37 +78,6 @@ const CounterWrapper = styled.div`
   }
 `;
 
-const LinkButton = styled.a`
-  border: none;
-  text-decoration: none;
-  background-color: ${props => props.bgColor || "#F0C043"};
-  color: ${props => props.textColor || "white"};
-  padding: 0.5rem 2.5rem;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  margin: 0.25rem;
-  border: 1.5px solid ${props => props.bgColor || "#F0C043"};
-  transition: all ease 0.3s;
-  position: relative;
-  &:hover {
-    color: ${props => props.bgColor || "#F0C043"};
-    background-color: ${props => props.textColor || "white"};
-    border-color: ${props => props.bgColor || "#F0C043"};
-  }
-  &:active {
-    top: 2px;
-  }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  width: 100%;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-`;
-
 const Colon = () => <div className="colon" />;
 
 const Column = props => {
@@ -176,57 +146,7 @@ export default class Countdown extends Component {
           <Column number={this.state.seconds} label="Seconds" color="#B12E1B" />
         </CounterWrapper>
         <h3>Subscribe wherever you get your podcasts!</h3>
-        <ButtonContainer>
-          <LinkButton
-            bgColor="#65D36E"
-            href="https://open.spotify.com/show/51Z2Ak2g3SwTBsd4GfAaH2?si=XetqwmmtSc6qujZ8RPbo_A"
-            target="_blank"
-          >
-            Spotify
-          </LinkButton>
-
-          <LinkButton
-            bgColor="#333333"
-            textColor="#F0C043"
-            href="https://www.stitcher.com/s?fid=382097&refid=stpr"
-            target="_blank"
-          >
-            Stitcher
-          </LinkButton>
-          <LinkButton
-            bgColor="#D8503F"
-            textColor="#ffffff"
-            href="https://play.google.com/music/m/Ikduxmrnugh255jld7l2zypzlhq?t=The_Overlap"
-            target="_blank"
-          >
-            Google
-          </LinkButton>
-          <LinkButton
-            bgColor="#1D1F3A"
-            textColor="#64D4CB"
-            href="https://tunein.com/podcasts/Education-Podcasts/The-Overlap-p1210323/"
-            target="_blank"
-          >
-            TuneIn
-          </LinkButton>
-
-          <LinkButton
-            bgColor="#DF5F53"
-            textColor="#ffffff"
-            href="https://pca.st/wb8j"
-            target="_blank"
-          >
-            PocketCasts
-          </LinkButton>
-          <LinkButton
-            bgColor="#EB9C4E"
-            textColor="#ffffff"
-            href="https://feeds.buzzsprout.com/255972.rss"
-            target="_blank"
-          >
-            RSS
-          </LinkButton>
-        </ButtonContainer>
+        <LinkButtons />
         <TempPlayer />
       </Wrapper>
     );
