@@ -78,15 +78,17 @@ export default class index extends Component {
   render() {
     return (
       <ButtonContainer>
-        {hostList.map(host => {
+        {hostList.map(({ bgColor, textColor, url, text }) => {
           return (
             <LinkButton
-              bgColor={host.bgColor}
-              textColor={host.textColor}
-              href={host.url}
+              bgColor={bgColor}
+              textColor={textColor}
+              href={url}
               target="_blank"
+              rel="noopener noreferrer"
+              key={text}
             >
-              {host.text}
+              {text}
             </LinkButton>
           );
         })}

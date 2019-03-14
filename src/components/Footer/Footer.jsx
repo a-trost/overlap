@@ -21,7 +21,7 @@ const FooterComponent = styled.footer`
     font-size: 14px;
     letter-spacing: 0.3px;
     text-align: center;
-    margin-top:2rem;
+    margin-top: 2rem;
   }
   @media all and (max-width: 600px) {
     padding: 1rem;
@@ -81,8 +81,20 @@ class Footer extends Component {
           <TextWrapper>
             <h4 className="name">Elle Trost</h4>
             <h5 className="title">Graphic Designer</h5>
-            <a href="https://twitter.com/lovelettersco">@lovelettersco</a>
-            <a href="https://www.trostliketoast.com/">Website</a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://twitter.com/lovelettersco"
+            >
+              @lovelettersco
+            </a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.trostliketoast.com/"
+            >
+              Website
+            </a>
           </TextWrapper>
         </Profile>
 
@@ -91,8 +103,20 @@ class Footer extends Component {
           <TextWrapper>
             <h4 className="name">Alex Trost</h4>
             <h5 className="title">Web Developer</h5>
-            <a href="https://twitter.com/mistertrost">@mistertrost</a>
-            <a href="https://www.atrost.com">Website</a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://twitter.com/mistertrost"
+            >
+              @mistertrost
+            </a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.atrost.com"
+            >
+              Website
+            </a>
           </TextWrapper>
         </Profile>
 
