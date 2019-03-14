@@ -11,20 +11,25 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  .description {
+  h2 {
     font-size: 2.1vw;
     margin-top: 2rem;
     color: #19232a;
     text-align: center;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
+    line-height: 1.3;
+    font-weight: 400;
   }
   .playerWrapper {
     padding: 1rem;
     margin: 1rem;
     width: 75%;
   }
-  h2 {
+  h3 {
     text-align: center;
+    margin-bottom: 0rem;
+    margin-top: 2rem;
+    font-size: 26px;
   }
   @media all and (max-width: 700px) {
     .description {
@@ -77,11 +82,11 @@ const LinkButton = styled.a`
   text-decoration: none;
   background-color: ${props => props.bgColor || "#F0C043"};
   color: ${props => props.textColor || "white"};
-  padding: 0.75rem 2.5rem;
+  padding: 0.5rem 2.5rem;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.5px;
-  margin: 0.5rem;
+  margin: 0.25rem;
   border: 1.5px solid ${props => props.bgColor || "#F0C043"};
   transition: all ease 0.3s;
   position: relative;
@@ -157,10 +162,10 @@ export default class Countdown extends Component {
     return (
       <Wrapper>
         <Logo src={logo} alt="Logo" />
-        <span className="description">
+        <h2 className="description">
           A Design and Web Development Podcast <br />
           Launching March 19th
-        </span>
+        </h2>
         <CounterWrapper>
           <Column number={this.state.days} label="Days" color="#1DA59B" />
           <Colon />
@@ -170,7 +175,7 @@ export default class Countdown extends Component {
           <Colon />
           <Column number={this.state.seconds} label="Seconds" color="#B12E1B" />
         </CounterWrapper>
-        <h2>Subscribe wherever you get your podcasts!</h2>
+        <h3>Subscribe wherever you get your podcasts!</h3>
         <ButtonContainer>
           <LinkButton
             bgColor="#65D36E"
@@ -179,6 +184,7 @@ export default class Countdown extends Component {
           >
             Spotify
           </LinkButton>
+
           <LinkButton
             bgColor="#333333"
             textColor="#F0C043"
@@ -188,14 +194,6 @@ export default class Countdown extends Component {
             Stitcher
           </LinkButton>
           <LinkButton
-            bgColor="#1D1F3A"
-            textColor="#64D4CB"
-            href="https://tunein.com/podcasts/Education-Podcasts/The-Overlap-p1210323/"
-            target="_blank"
-          >
-            TuneIn
-          </LinkButton>
-          <LinkButton
             bgColor="#D8503F"
             textColor="#ffffff"
             href="https://play.google.com/music/m/Ikduxmrnugh255jld7l2zypzlhq?t=The_Overlap"
@@ -203,7 +201,23 @@ export default class Countdown extends Component {
           >
             Google
           </LinkButton>
+          <LinkButton
+            bgColor="#1D1F3A"
+            textColor="#64D4CB"
+            href="https://tunein.com/podcasts/Education-Podcasts/The-Overlap-p1210323/"
+            target="_blank"
+          >
+            TuneIn
+          </LinkButton>
 
+          <LinkButton
+            bgColor="#DF5F53"
+            textColor="#ffffff"
+            href="https://pca.st/wb8j"
+            target="_blank"
+          >
+            PocketCasts
+          </LinkButton>
           <LinkButton
             bgColor="#EB9C4E"
             textColor="#ffffff"
