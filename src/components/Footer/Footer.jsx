@@ -82,7 +82,7 @@ class Footer extends Component {
             <h4 className="name">Elle Trost</h4>
             <h5 className="title">Graphic Designer</h5>
             <a href="https://twitter.com/lovelettersco">@lovelettersco</a>
-            <a href="https://www.loveletterspaper.com/">Website</a>
+            <a href="https://www.trostliketoast.com/">Website</a>
           </TextWrapper>
         </Profile>
 
