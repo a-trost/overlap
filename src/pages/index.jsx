@@ -8,34 +8,168 @@ import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
 import Countdown from "../components/Countdown";
 import Player from "../components/Player";
+import EpisodeDetails from "../components/EpisodeDetails";
+import LinkButtons from "../components/LinkButtons";
 import Footer from "../components/Footer/Footer";
 import logo from "../../static/images/overlapLogoNoTagline.svg";
+import { randomDegree, getColor } from "../utils";
 
-const LogoHeader = styled.div`
-  margin: 1rem;
+const Header = styled.div`
+  margin: 1rem 0;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 100%;
+  grid-template-areas: "logo" "player" "buttons";
+  grid-gap: 0.5rem;
 `;
 
-const Logo = styled.img`
+const Body = styled.div`
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto 280px;
+  grid-template-areas: "episode-details episode-listing";
+  grid-gap: 1rem;
+`;
+
+const Logo = ({ className }) => (
+  <div className={className}>
+    <img src={logo} alt="The Overlap" width="500px" />
+  </div>
+);
+
+const StyledLogo = styled(Logo)`
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  grid-area: logo;
   width: 100%;
-  max-width: 90%;
+
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 90%;
+    text-align: center;
+  }
 `;
 
 class Index extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      episodeList: [],
+      tags: [],
+      selectedIndex: 0,
+      playingIndex: 0,
+      selectedTag: "",
+      filterText: ""
+    };
+    this.setSelectedIndex = this.setSelectedIndex.bind(this);
+    this.setPlayingIndex = this.setPlayingIndex.bind(this);
+    this.setSelectedTag = this.setSelectedTag.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.getEpisodeList();
+  }
+
+  setSelectedIndex(index) {
+    this.setState({ selectedIndex: index });
+  }
+
+  setPlayingIndex(index) {
+    this.setState({ playingIndex: index });
+  }
+
+  setSelectedTag(selectedTag) {
+    if (selectedTag !== this.state.selectedTag) {
+      this.setState({ selectedTag });
+    } else {
+      this.setState({ selectedTag: "" });
+    }
+  }
+
+  getEpisodeList() {
+    const episodeList = [];
+    const { data } = this.props;
+    const episodeEdges = data.allFeedOverlapPodcast.edges;
+    episodeEdges.forEach(({ node }, index) => {
+      this.compileTags(node.itunes.keywords.split(","));
+      episodeList.push({
+        title: node.title,
+        season: node.itunes.season,
+        episode: node.itunes.episode,
+        // episode: episodeEdges.length - index,
+        summary: node.itunes.summary,
+        showNotes: node.content.encoded,
+        mp3Url: node.enclosure.url,
+        trackLength: node.itunes.duration,
+        date: node.isoDate,
+        tags: node.itunes.keywords,
+        degree: randomDegree(),
+        color: getColor(index, episodeEdges.length)
+      });
+    });
+    this.setState({ episodeList });
+  }
+
+  compileTags(tagList) {
+    tagList.forEach(tag => {
+      const { tags } = this.state;
+      const thisTag = tag.trim();
+      if (tags.indexOf(thisTag) < 0) {
+        tags.push(thisTag);
+        this.setState({ tags });
+      }
+    });
+  }
+
+  handleFilterChange(event) {
+    this.setState({ filterText: event.target.value });
+  }
+
   render() {
-    const postEdges = this.props.data.allMarkdownRemark.edges;
+    const {
+      episodeList,
+      selectedIndex,
+      playingIndex,
+      selectedTag,
+      filterText,
+      tags
+    } = this.state;
     return (
       <>
         <Layout>
-          <div className="index-container">
-            <Helmet title={config.siteTitle} />
-            <SEO />
-            {/* <LogoHeader>
-            <Logo src={logo} alt="Logo" width="500px" />
-          </LogoHeader>
-          <Player track={this.props.data.allFeedOverlapPodcast.edges[0].node} /> */}
-            {/* <PostListing postEdges={this.props.data.allFeedOverlapPodcast.edges} />  */}
-            <Countdown />
-          </div>
+          <Helmet title={config.siteTitle} />
+          <SEO />
+          <Header>
+            <StyledLogo />
+            {episodeList.length > 0 && (
+              <Player episodeList={episodeList} playingIndex={playingIndex} />
+            )}
+            <LinkButtons />
+          </Header>
+          <Body>
+            <EpisodeDetails
+              episodeList={episodeList}
+              selectedIndex={selectedIndex}
+              setPlayingIndex={this.setPlayingIndex}
+              setSelectedTag={this.setSelectedTag}
+              selectedTag={selectedTag}
+            />
+            <PostListing
+              tags={tags}
+              setSelectedIndex={this.setSelectedIndex}
+              setSelectedTag={this.setSelectedTag}
+              selectedTag={selectedTag}
+              selectedIndex={selectedIndex}
+              episodeList={episodeList}
+              filterText={filterText}
+              handleFilterChange={this.handleFilterChange}
+            />
+          </Body>
+          {/* <Countdown /> */}
         </Layout>
         <Footer />
       </>
@@ -52,39 +186,22 @@ export const pageQuery = graphql`
       edges {
         node {
           title
-          link
+          isoDate
           content {
             encoded
+          }
+          itunes {
+            summary
+            duration
+            image
+            episode
+            season
+            keywords
           }
           enclosure {
             url
             length
             type
-          }
-        }
-      }
-    }
-    feedOverlapPodcast {
-      title
-      link
-    }
-    allMarkdownRemark(
-      limit: 2000
-      sort: { fields: [fields___date], order: DESC }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-            date
-          }
-          excerpt
-          timeToRead
-          frontmatter {
-            title
-            tags
-            cover
-            date
           }
         }
       }

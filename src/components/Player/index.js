@@ -44,6 +44,11 @@ const pauseIcon = (
   </svg>
 );
 
+const Container = styled.div`
+  grid-area: player;
+  width: 100%;
+`;
+
 const Player = styled.div`
   display: flex;
   flex-flow: row nowrap;
@@ -133,24 +138,29 @@ const SpeedButton = styled.button`
 `;
 
 class App extends Component {
-  state = {
-    url: null,
-    pip: false,
-    playing: true,
-    controls: false,
-    light: false,
-    volume: 0.8,
-    muted: false,
-    played: 0,
-    loaded: 0,
-    duration: 0,
-    playbackRate: 1.0,
-    loop: false,
-    title: ""
-  };
-  load = ({ enclosure, title }) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playingIndex: 0,
+      url: null,
+      pip: false,
+      playing: true,
+      controls: false,
+      light: false,
+      volume: 0.8,
+      muted: false,
+      played: 0,
+      loaded: 0,
+      duration: 0,
+      playbackRate: 1.0,
+      loop: false,
+      title: ""
+    };
+  }
+
+  load = ({ mp3Url, title }) => {
     this.setState({
-      url: enclosure.url,
+      url: mp3Url,
       played: 0,
       loaded: 0,
       pip: false,
@@ -237,11 +247,24 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({ playing: false });
-    this.load(this.props.track);
+    this.load(this.props.episodeList[0]);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.playingIndex !== this.state.playingIndex) {
+      this.setState(
+        {
+          playingIndex: nextProps.playingIndex
+        },
+        data => {
+          this.load(this.props.episodeList[this.state.playingIndex]);
+        }
+      );
+      this.onPlay();
+    }
   }
 
   render() {
-    console.log(this.props);
     const {
       url,
       playing,
@@ -257,7 +280,7 @@ class App extends Component {
       pip
     } = this.state;
     return (
-      <>
+      <Container>
         <ReactPlayer
           ref={this.ref}
           className="react-player"
@@ -315,8 +338,8 @@ class App extends Component {
             </SeekBarContainer>
           </Wrapper>
         </Player>
-        {this.renderLoadButton(this.props.track)}
-      </>
+        {/* {this.renderLoadButton(this.props.track)} */}
+      </Container>
     );
   }
 }

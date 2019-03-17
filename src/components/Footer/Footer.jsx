@@ -15,6 +15,7 @@ const FooterComponent = styled.footer`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
   .copyright {
     color: #aaa;
     flex: 1 100%;

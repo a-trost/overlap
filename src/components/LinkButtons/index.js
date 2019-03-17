@@ -7,9 +7,12 @@ const ButtonContainer = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  grid-area: buttons;
+  margin-bottom: 1rem;
 `;
 
 const LinkButton = styled.a`
+  z-index: 4;
   border: none;
   text-decoration: none;
   background-color: ${props => props.bgColor || "#F0C043"};
