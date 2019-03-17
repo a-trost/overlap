@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { formatEpisodeNumber } from "../../utils";
+import { Dropdown } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 
 const EpisodeContainer = styled.div`
   border: 1px solid #eee;
@@ -21,16 +23,16 @@ const Filter = styled.input`
   width: 100%;
 `;
 
-const Select = styled.select`
-  background: white;
-  border: 1px solid #aaa;
-  font-size: 16px;
-  padding: 0.25rem 0.5rem;
-  width: 100%;
-  height:30px;
-  border-radius:0;
-  color: #333;
-`;
+// const Select = styled.select`
+//   background: white;
+//   border: 1px solid #aaa;
+//   font-size: 16px;
+//   padding: 0.25rem 0.5rem;
+//   width: 100%;
+//   height:30px;
+//   border-radius:0;
+//   color: #333;
+// `;
 
 const Episode = styled.div`
   border-bottom: 1px solid #eee;
@@ -111,9 +113,17 @@ class PostListing extends React.Component {
       setSelectedIndex(index);
     };
 
-    const handleSelectChange = event => {
-      setSelectedTag(event.target.value);
+    const handleSelectChange = (event, data) => {
+      // console.log(data)
+      setSelectedTag(data.value);
     };
+
+    const tagOptions = tags.map(value=>
+      { const viewValue = value[0].toUpperCase()+
+        value.slice(1)
+        return { key: value, text: viewValue, value }
+  }
+    )
 
     return (
       <EpisodeContainer>
@@ -124,17 +134,7 @@ class PostListing extends React.Component {
             value={filterText}
             onChange={handleFilterChange}
           />
-          <Select value={selectedTag} onChange={handleSelectChange}>
-            <option className="default" id="default" value="">
-              Topics
-            </option>
-            {tags && tags.map(tag => (
-              <option key={tag} value={tag}>
-                {tag[0].toUpperCase()}
-                {tag.slice(1)}
-              </option>
-            ))}
-          </Select>
+          <Dropdown value={selectedTag} onChange={handleSelectChange} clearable options={tagOptions} selection placeholder="Topics" />
         </FilterBox>
 
         {filteredList &&
