@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Dropdown, Input } from 'semantic-ui-react'
 import { formatEpisodeNumber } from "../../utils";
-import { Dropdown } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
 const EpisodeContainer = styled.div`
@@ -128,12 +128,8 @@ class PostListing extends React.Component {
     return (
       <EpisodeContainer>
         <FilterBox>
-          <Filter
-            type="text"
-            placeholder="Filter"
-            value={filterText}
-            onChange={handleFilterChange}
-          />
+        <Input onChange={handleFilterChange} value={filterText} icon='search' placeholder='Filter...' />
+         
           <Dropdown value={selectedTag} onChange={handleSelectChange} clearable options={tagOptions} selection placeholder="Topics" />
         </FilterBox>
 
