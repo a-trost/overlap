@@ -128,7 +128,7 @@ class PostListing extends React.Component {
             <option className="default" id="default" value="">
               Topics
             </option>
-            {tags.map(tag => (
+            {tags && tags.map(tag => (
               <option key={tag} value={tag}>
                 {tag[0].toUpperCase()}
                 {tag.slice(1)}
