@@ -21,13 +21,7 @@ margin-bottom:1rem;
     display: flex;
     position: static;
 		margin-right:1.5rem;
-    .number {
-      padding: 1rem 0;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      h4 {
+    .number h4 {
         font-size: 120px;
         font-weight: 700;
 				letter-spacing:-6px;
@@ -38,12 +32,12 @@ margin-bottom:1rem;
 				color: ${props => props.color};
 				z-index: 3;
       }
-    }
+    
  }
 `;
 
 const Title = styled.h2`
-  font-size: 60px;
+  font-size: 50px;
   line-break: normal;
   margin: 0;
   font-weight: 700;
@@ -123,14 +117,14 @@ const Tag = styled.button`
   font-size: 14px;
   color: #333;
   background-color: ${props =>
-    props.selectedTag === props.tag ? "#f5c043cc" : "#f5c04344"};
+    props.selectedTag === props.tag ? "#f5c043cc" : "#ffffff"};
   margin-right: 8px;
   border-radius: 10px;
   padding: 2px 10px 4px 10px;
   border: none;
   cursor: pointer;
   :hover {
-    background-color: #f5c04388;
+    background-color: #f5c04344;
   }
 `;
 
@@ -189,6 +183,7 @@ export default class EpisodeDetails extends Component {
                   selectedTag={selectedTag}
                   tag={tag.trim()}
                   type="button"
+                  key={tag}
                   className="tag"
                   onClick={() => setSelectedTag(tag.trim())}
                 >

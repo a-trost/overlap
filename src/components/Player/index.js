@@ -4,6 +4,7 @@ import { hot } from "react-hot-loader";
 import ReactPlayer from "react-player";
 import Duration from "./duration";
 import styled from "styled-components";
+import logo from "../../../static/images/overlapLogoNoTagline.svg";
 
 const playIcon = (
   <svg
@@ -46,14 +47,38 @@ const pauseIcon = (
 
 const Container = styled.div`
   grid-area: player;
+  z-index: 5;
+  width: 100%;
+  position: ${props => (props.scrolled ? "fixed" : "static")};
+  top: ${props => (props.scrolled ? "0" : "unset")};
+`;
+
+const SpaceFiller = styled.div`
+  grid-area: player;
+  height: 75px;
   width: 100%;
 `;
 
 const Player = styled.div`
+  position: ${props => (props.scrolled ? "fixed" : "static")};
+  top: ${props => (props.scrolled ? "0" : "unset")};
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
   height: 75px;
+`;
+
+const Logo = styled.div`
+  max-width: 200px;
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 const PlayButton = styled.button`
@@ -277,69 +302,78 @@ class App extends Component {
       loaded,
       duration,
       playbackRate,
-      pip
+      pip,
+      title
     } = this.state;
+    const { scrolled } = this.props;
     return (
-      <Container>
-        <ReactPlayer
-          ref={this.ref}
-          className="react-player"
-          width="100%"
-          height="100%"
-          url={url}
-          pip={pip}
-          playing={playing}
-          controls={controls}
-          playbackRate={playbackRate}
-          volume={volume}
-          // onReady={() => console.log("onReady")}
-          // onStart={() => console.log("onStart")}
-          onPlay={this.onPlay}
-          onPause={this.onPause}
-          // onBuffer={() => console.log("onBuffer")}
-          // onSeek={e => console.log("onSeek", e)}
-          onEnded={this.onEnded}
-          onError={e => console.log("onError", e)}
-          onProgress={this.onProgress}
-          onDuration={this.onDuration}
-        />
-        <Player>
-          <PlayButton onClick={this.playPause}>
-            {playing ? pauseIcon : playIcon}
-          </PlayButton>
-          <Wrapper>
-            <TrackInfoContainer>
-              <TrackName>
-                <h3>{this.state.title}</h3>
-              </TrackName>
-              <ControlBox>
-                <SpeedButton onClick={this.increaseSpeed}>
-                  Speed: {this.state.playbackRate}&times;
-                </SpeedButton>
-              </ControlBox>
-              <ControlBox>
-                Volume:{" "}
-                <input
-                  type="range"
-                  min={0}
-                  max={1}
-                  step="any"
-                  value={volume}
-                  onChange={this.setVolume}
-                />
-              </ControlBox>
-            </TrackInfoContainer>
-            <SeekBarContainer
-              ref={i => (this.seekBar = i)}
-              onMouseDown={this.onSeekMouseDown}
-              onMouseUp={this.onSeekMouseUp}
-            >
-              <SeekBar position={played.toFixed(3) * 100} />
-            </SeekBarContainer>
-          </Wrapper>
-        </Player>
-        {/* {this.renderLoadButton(this.props.track)} */}
-      </Container>
+      <>
+        {scrolled && <SpaceFiller />}
+        <Container id="player" className={scrolled ? "sticky" : ""}>
+          <ReactPlayer
+            ref={this.ref}
+            className="react-player"
+            width="100%"
+            height="100%"
+            url={url}
+            pip={pip}
+            playing={playing}
+            controls={controls}
+            playbackRate={playbackRate}
+            volume={volume}
+            // onReady={() => console.log("onReady")}
+            // onStart={() => console.log("onStart")}
+            onPlay={this.onPlay}
+            onPause={this.onPause}
+            // onBuffer={() => console.log("onBuffer")}
+            // onSeek={e => console.log("onSeek", e)}
+            onEnded={this.onEnded}
+            onError={e => console.log("onError", e)}
+            onProgress={this.onProgress}
+            onDuration={this.onDuration}
+          />
+          <Player scrolled={scrolled}>
+            {scrolled && (
+              <Logo>
+                <img src={logo} alt="The Overlap" />
+              </Logo>
+            )}
+            <PlayButton onClick={this.playPause}>
+              {playing ? pauseIcon : playIcon}
+            </PlayButton>
+            <Wrapper>
+              <TrackInfoContainer>
+                <TrackName>
+                  <h3>{title}</h3>
+                </TrackName>
+                <ControlBox>
+                  <SpeedButton onClick={this.increaseSpeed}>
+                    Speed: {playbackRate}&times;
+                  </SpeedButton>
+                </ControlBox>
+                <ControlBox>
+                  Volume:{" "}
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step="any"
+                    value={volume}
+                    onChange={this.setVolume}
+                  />
+                </ControlBox>
+              </TrackInfoContainer>
+              <SeekBarContainer
+                ref={i => (this.seekBar = i)}
+                onMouseDown={this.onSeekMouseDown}
+                onMouseUp={this.onSeekMouseUp}
+              >
+                <SeekBar position={played.toFixed(3) * 100} />
+              </SeekBarContainer>
+            </Wrapper>
+          </Player>
+        </Container>
+      </>
     );
   }
 }

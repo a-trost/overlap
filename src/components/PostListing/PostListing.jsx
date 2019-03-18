@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Dropdown, Input } from 'semantic-ui-react'
+import { Dropdown, Input, Button, Icon } from 'semantic-ui-react'
 import { formatEpisodeNumber } from "../../utils";
 import 'semantic-ui-css/semantic.min.css'
 
@@ -81,7 +81,7 @@ const Tag = styled.div`
   font-size: 11px;
   color: #333;
   background-color: ${props =>
-    props.selectedTag === props.tag ? "#f5c043cc" : "#f5c04344"};
+    props.selectedTag === props.tag ? "#f5c043cc" : "#ffffff"};
   margin-right: 3px;
   border-radius: 10px;
   padding: 1px 5px;
@@ -156,6 +156,7 @@ class PostListing extends React.Component {
                     <Tag
                       selectedTag={selectedTag}
                       tag={tag.trim()}
+                      key={tag}
                       className="tag"
                     >
                       {tag.trim()}

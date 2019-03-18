@@ -26,7 +26,7 @@ const Header = styled.div`
 const Body = styled.div`
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: auto 280px;
+  grid-template-columns: 2fr 1fr;
   grid-template-areas: "episode-details episode-listing";
   grid-gap: 1rem;
 `;
@@ -62,7 +62,8 @@ class Index extends React.Component {
       selectedIndex: 0,
       playingIndex: 0,
       selectedTag: "",
-      filterText: ""
+      filterText: "",
+      scrolled:false,
     };
     this.setSelectedIndex = this.setSelectedIndex.bind(this);
     this.setPlayingIndex = this.setPlayingIndex.bind(this);
@@ -72,7 +73,17 @@ class Index extends React.Component {
 
   componentDidMount() {
     this.getEpisodeList();
+    document.addEventListener("scroll", this.trackScrolling);
   }
+
+  trackScrolling = () => {
+    const wrappedElement = document.getElementById("player");
+    const {scrolled} = this.state
+    if ((wrappedElement.getBoundingClientRect().top <= 0) !== scrolled) {
+      this.setState({scrolled: !scrolled})
+    }
+
+    }
 
   setSelectedIndex(index) {
     this.setState({ selectedIndex: index });
@@ -136,17 +147,18 @@ class Index extends React.Component {
       playingIndex,
       selectedTag,
       filterText,
-      tags
+      tags,
+      scrolled,
     } = this.state;
     return (
       <>
         <Layout>
           <Helmet title={config.siteTitle} />
           <SEO />
-          <Header>
+          <Header scrolled={scrolled}>
             <StyledLogo />
             {episodeList.length > 0 && (
-              <Player episodeList={episodeList} playingIndex={playingIndex} />
+              <Player scrolled={scrolled} episodeList={episodeList} playingIndex={playingIndex} />
             )}
             <LinkButtons />
           </Header>
