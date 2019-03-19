@@ -29,6 +29,11 @@ const Body = styled.div`
   grid-template-columns: 2fr 1fr;
   grid-template-areas: "episode-details episode-listing";
   grid-gap: 1rem;
+  @media all and (max-width:600px){
+  grid-template-areas: "episode-details" "episode-listing";
+  grid-template-rows: auto auto;
+  grid-template-columns: auto;
+  }
 `;
 
 const Logo = ({ className }) => (
