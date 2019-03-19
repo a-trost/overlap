@@ -29,6 +29,7 @@ const Body = styled.div`
   grid-template-columns: 2fr 1fr;
   grid-template-areas: "episode-details episode-listing";
   grid-gap: 1rem;
+  align-items:flex-start;
   @media all and (max-width:650px){
   grid-template-areas: "episode-details" "episode-listing";
   grid-template-rows: auto auto;
