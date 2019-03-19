@@ -103,7 +103,7 @@ class Index extends React.Component {
     const episodeList = [];
     const { data } = this.props;
     const episodeEdges = data.allFeedOverlapPodcast.edges;
-    episodeEdges.reverse().forEach(({ node }, index) => {
+    episodeEdges.forEach(({ node }, index) => {
       this.compileTags(node.itunes.keywords.split(","));
       episodeList.push({
         title: node.title,
