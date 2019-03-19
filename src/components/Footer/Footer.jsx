@@ -16,6 +16,14 @@ const FooterComponent = styled.footer`
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
+  .header {
+    flex: 1 100%;
+    text-align: center;
+    h4 {
+      color: #555;
+      font-size:1.3rem;
+    }
+  }
   .copyright {
     color: #aaa;
     flex: 1 100%;
@@ -77,6 +85,9 @@ class Footer extends Component {
   render() {
     return (
       <FooterComponent>
+        <div className="header">
+          <h4>Co-Hosts / Cousins</h4>
+        </div>
         <Profile>
           <Avatar src={ellePicture} />
           <TextWrapper>
