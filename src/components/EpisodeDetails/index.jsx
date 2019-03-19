@@ -35,6 +35,14 @@ margin-bottom:1.5rem;
       }
     
  }
+ @media all and (max-width:650px){
+flex-flow: column nowrap;
+
+  .numberWrapper {
+  .number h4 {
+        font-size: 70px;
+  }}
+}
 `;
 
 const Title = styled.h2`
@@ -45,6 +53,10 @@ const Title = styled.h2`
   line-height: 1.05;
   color: #444;
   letter-spacing: -2px;
+ @media all and (max-width:650px){
+  font-size: 40px;
+
+ }
 `;
 
 const EpisodeInfo = styled.div`
@@ -54,20 +66,19 @@ const EpisodeInfo = styled.div`
   color: #666;
   .info {
     display: flex;
-    padding: .5rem 2rem;
+    padding: 0.5rem 2rem;
     flex-flow: column wrap;
     align-items: center;
     justify-content: center;
-    text-align:center;
-    font-size:13px;
-    line-height:1.3;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.3;
   }
-  .info .title{
-    font-weight:700;
-    color:#333;
+  .info .title {
+    font-weight: 700;
+    color: #333;
   }
 `;
-
 
 const ShowNotes = styled.div`
   font-size: 17px;
