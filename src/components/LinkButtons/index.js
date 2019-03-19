@@ -42,7 +42,7 @@ const LinkButton = styled.a`
   &:active {
     top: 2px;
   }
-  @media all and (max-width: 600px) {
+  @media all and (max-width: 650px) {
     flex: 1 30%;
   }
 `;

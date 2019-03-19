@@ -41,6 +41,8 @@ flex-flow: column nowrap;
   .numberWrapper {
   .number h4 {
         font-size: 70px;
+				letter-spacing:-2px;
+
   }}
 }
 `;
@@ -53,10 +55,9 @@ const Title = styled.h2`
   line-height: 1.05;
   color: #444;
   letter-spacing: -2px;
- @media all and (max-width:650px){
-  font-size: 40px;
-
- }
+  @media all and (max-width: 650px) {
+    font-size: 40px;
+  }
 `;
 
 const EpisodeInfo = styled.div`
@@ -78,11 +79,28 @@ const EpisodeInfo = styled.div`
     font-weight: 700;
     color: #333;
   }
+  @media all and (max-width: 650px) {
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    width:100%;
+    .ui.small.button.labeled{
+      width:100%;
+      margin-bottom:5px;
+    }
+    .info {
+      padding: 0.5rem 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+  }
 `;
 
 const ShowNotes = styled.div`
   font-size: 17px;
   line-height: 1.5;
+  @media all and (max-width: 650px) {
+  font-size: 16px;
+  }
 `;
 
 const TagRow = styled.div`
@@ -148,6 +166,7 @@ export default class EpisodeDetails extends Component {
             </Header>
             <EpisodeInfo>
               <Button
+                className="button"
                 size="small"
                 onClick={() => {
                   setPlayingIndex(selectedIndex);
@@ -160,6 +179,7 @@ export default class EpisodeDetails extends Component {
               </Button>
 
               <Button
+                className="button"
                 size="small"
                 href={selectedEpisode.mp3Url}
                 icon

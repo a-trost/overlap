@@ -66,6 +66,11 @@ const Player = styled.div`
   width: 100%;
   height: 75px;
   max-width: 1000px;
+  @media all and (max-width: 650px) {
+    left: ${props => (props.scrolled ? "0" : "unset")};
+    right: ${props => (props.scrolled ? "0" : "unset")};
+    height: 55px;
+  }
 `;
 
 const Logo = styled.div`
@@ -78,6 +83,9 @@ const Logo = styled.div`
   img {
     width: 100%;
     height: auto;
+  }
+  @media all and (max-width: 650px) {
+    display: none;
   }
 `;
 
@@ -92,6 +100,10 @@ const PlayButton = styled.button`
   position: relative;
   :active {
     transform: translateY(2px);
+  }
+  @media all and (max-width: 650px) {
+    height: 55px;
+    width: 55px;
   }
 `;
 
@@ -121,6 +133,11 @@ const TrackName = styled.div`
   align-items: center;
   margin: 2px 0;
   padding: 0.5rem;
+  overflow: hidden;
+  @media all and (max-width: 650px) {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 `;
 
 const ControlBox = styled.div`
@@ -161,6 +178,8 @@ const SpeedButton = styled.button`
   height: 100%;
   font-size: 14px;
   font-weight: 700;
+  @media all and (max-width: 650px) {
+  }
 `;
 
 class App extends Component {
