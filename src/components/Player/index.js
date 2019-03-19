@@ -217,11 +217,11 @@ class App extends Component {
     this.setState({ playbackRate: parseFloat(e.target.value) });
   };
   onPlay = () => {
-    console.log("onPlay");
+    // console.log("onPlay");
     this.setState({ playing: true });
   };
   onPause = () => {
-    console.log("onPause");
+    // console.log("onPause");
     this.setState({ playing: false });
   };
   onSeekMouseDown = e => {
@@ -245,11 +245,11 @@ class App extends Component {
     }
   };
   onEnded = () => {
-    console.log("onEnded");
+    // console.log("onEnded");
     this.setState({ playing: this.state.loop });
   };
   onDuration = duration => {
-    console.log("onDuration", duration);
+    // console.log("onDuration", duration);
     this.setState({ duration });
   };
   renderLoadButton = track => {

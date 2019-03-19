@@ -95,7 +95,6 @@ class PostListing extends React.Component {
     };
 
     const handleSelectChange = (event, data) => {
-      // console.log(data)
       setSelectedTag(data.value);
     };
 
