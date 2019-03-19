@@ -8,31 +8,42 @@ const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   grid-area: buttons;
-  margin-bottom: 1rem;
+  margin: 0.75rem 0;
+  @media all and (max-width: 700px) {
+    flex-flow: row wrap;
+  }
 `;
 
 const LinkButton = styled.a`
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 4px;
   z-index: 4;
   border: none;
   text-decoration: none;
-  background-color: ${props => props.bgColor || "#F0C043"};
-  color: ${props => props.textColor || "white"};
-  padding: 0.5rem 2.5rem;
-  font-size: 16px;
+  background-color: #bbb;
+  color: #555;
+  border: 1.5px solid #bbb;
+  padding: 0.2rem 2.5rem;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.5px;
   margin: 0.25rem;
-  border: 1.5px solid ${props => props.bgColor || "#F0C043"};
   transition: all ease 0.3s;
   position: relative;
   &:hover {
-    color: ${props => props.bgColor || "#F0C043"};
-    background-color: ${props => props.textColor || "white"};
-    border-color: ${props => props.bgColor || "#F0C043"};
+    background-color: ${props => props.bgColor || "#F0C043"};
+    color: ${props => props.textColor || "white"};
+    border: 1.5px solid ${props => props.bgColor || "#F0C043"};
     text-decoration: none;
   }
   &:active {
     top: 2px;
+  }
+  @media all and (max-width: 600px) {
+    flex: 1 30%;
   }
 `;
 

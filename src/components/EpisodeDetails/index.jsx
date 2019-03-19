@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import moment from "moment";
 import { formatSeconds, formatEpisodeNumber } from "../../utils";
@@ -15,7 +16,7 @@ width:100%;
 display:flex;
 flex-flow: row nowrap
 justify-content: center;
-margin-bottom:1rem;
+margin-bottom:1.5rem;
 ;
  .numberWrapper {
     display: flex;
@@ -50,57 +51,23 @@ const EpisodeInfo = styled.div`
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  color: #555;
-  .date {
-    margin-right: 1.5rem;
+  color: #666;
+  .info {
+    display: flex;
+    padding: .5rem 2rem;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    text-align:center;
+    font-size:13px;
+    line-height:1.3;
   }
-  .duration {
-  }
-`;
-
-const PlayButton = styled.button`
-  background: #eee;
-  color: #555;
-  border: none;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  padding: 0.75rem 2rem;
-  position: relative;
-  cursor: pointer;
-  margin-right: 0.5rem;
-  :hover {
-    text-decoration: none;
-    background: #e8e8e8;
-  }
-  :active {
-    top: 2px;
+  .info .title{
+    font-weight:700;
+    color:#333;
   }
 `;
 
-const DownloadButton = styled.a`
-  background: #eee;
-  color: #555;
-  border: none;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  position: relative;
-  padding: 0.75rem 2rem;
-  margin-right: 0.5rem;
-  :hover {
-    text-decoration: none;
-    background: #e8e8e8;
-    color: #555;
-  }
-  :active {
-    top: 2px;
-  }
-`;
 
 const ShowNotes = styled.div`
   font-size: 17px;
@@ -110,17 +77,28 @@ const ShowNotes = styled.div`
 const TagRow = styled.div`
   display: flex;
   flex-flow: row wrap;
-  margin-top: 5px;
+  margin: 1rem 0;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+  span {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #777;
+    font-weight: 700;
+    margin-right: 8px;
+  }
 `;
 
 const Tag = styled.button`
-  font-size: 14px;
+  font-size: 13px;
   color: #333;
   background-color: ${props =>
-    props.selectedTag === props.tag ? "#f5c043cc" : "#ffffff"};
+    props.selectedTag === props.tag ? "#f5c043cc" : "transparent"};
   margin-right: 8px;
-  border-radius: 10px;
-  padding: 2px 10px 4px 10px;
+  border-radius: 15px;
+  padding: 4px 12px;
   border: none;
   cursor: pointer;
   :hover {
@@ -158,26 +136,40 @@ export default class EpisodeDetails extends Component {
               <Title>{selectedEpisode.title}</Title>
             </Header>
             <EpisodeInfo>
-              <PlayButton
-                type="button"
+              <Button
+                size="small"
                 onClick={() => {
                   setPlayingIndex(selectedIndex);
                 }}
+                icon
+                labelPosition="left"
               >
+                <Icon name="play" />
                 Play Episode {formatEpisodeNumber(selectedEpisode.episode)}
-              </PlayButton>
-              <DownloadButton href={selectedEpisode.mp3Url}>
-                Download Episode
-              </DownloadButton>
+              </Button>
 
-              <span className="date">
-                {moment(selectedEpisode.date).format("MMM Do YYYY")}
-              </span>
-              <span className="duration">
-                {formatSeconds(selectedEpisode.trackLength)}
-              </span>
+              <Button
+                size="small"
+                href={selectedEpisode.mp3Url}
+                icon
+                labelPosition="left"
+              >
+                <Icon name="download" />
+                Download Episode
+              </Button>
+              <div className="info">
+                <span className="title">Published</span>
+                <span>
+                  {moment(selectedEpisode.date).format("MMM Do YYYY")}
+                </span>
+              </div>
+              <div className="info">
+                <span className="title">Length</span>
+                <span>{formatSeconds(selectedEpisode.trackLength)}</span>
+              </div>
             </EpisodeInfo>
             <TagRow>
+              <span>Episode Tags:</span>
               {selectedEpisode.tags.split(",").map(tag => (
                 <Tag
                   selectedTag={selectedTag}

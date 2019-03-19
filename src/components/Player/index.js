@@ -49,8 +49,6 @@ const Container = styled.div`
   grid-area: player;
   z-index: 5;
   width: 100%;
-  position: ${props => (props.scrolled ? "fixed" : "static")};
-  top: ${props => (props.scrolled ? "0" : "unset")};
 `;
 
 const SpaceFiller = styled.div`
@@ -62,10 +60,12 @@ const SpaceFiller = styled.div`
 const Player = styled.div`
   position: ${props => (props.scrolled ? "fixed" : "static")};
   top: ${props => (props.scrolled ? "0" : "unset")};
+  box-shadow: ${props => (props.scrolled ? "0px 2px 6px #00000022" : "none")};
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
   height: 75px;
+  max-width: 1000px;
 `;
 
 const Logo = styled.div`
@@ -157,9 +157,10 @@ const SeekBar = styled.div`
 const SpeedButton = styled.button`
   background: none;
   border: none;
-  font-size: 16px;
   width: 100%;
   height: 100%;
+  font-size: 14px;
+  font-weight: 700;
 `;
 
 class App extends Component {
@@ -309,29 +310,29 @@ class App extends Component {
     return (
       <>
         {scrolled && <SpaceFiller />}
-        <Container id="player" className={scrolled ? "sticky" : ""}>
-          <ReactPlayer
-            ref={this.ref}
-            className="react-player"
-            width="100%"
-            height="100%"
-            url={url}
-            pip={pip}
-            playing={playing}
-            controls={controls}
-            playbackRate={playbackRate}
-            volume={volume}
-            // onReady={() => console.log("onReady")}
-            // onStart={() => console.log("onStart")}
-            onPlay={this.onPlay}
-            onPause={this.onPause}
-            // onBuffer={() => console.log("onBuffer")}
-            // onSeek={e => console.log("onSeek", e)}
-            onEnded={this.onEnded}
-            onError={e => console.log("onError", e)}
-            onProgress={this.onProgress}
-            onDuration={this.onDuration}
-          />
+        <ReactPlayer
+          ref={this.ref}
+          className="react-player"
+          width="100%"
+          height="100%"
+          url={url}
+          pip={pip}
+          playing={playing}
+          controls={controls}
+          playbackRate={playbackRate}
+          volume={volume}
+          // onReady={() => console.log("onReady")}
+          // onStart={() => console.log("onStart")}
+          onPlay={this.onPlay}
+          onPause={this.onPause}
+          // onBuffer={() => console.log("onBuffer")}
+          // onSeek={e => console.log("onSeek", e)}
+          onEnded={this.onEnded}
+          onError={e => console.log("onError", e)}
+          onProgress={this.onProgress}
+          onDuration={this.onDuration}
+        />
+        <Container id="player">
           <Player scrolled={scrolled}>
             {scrolled && (
               <Logo>

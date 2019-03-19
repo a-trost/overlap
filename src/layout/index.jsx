@@ -13,7 +13,7 @@ const Outer = styled.div`
 
 const Inner = styled.div`
   width: 100%;
-  max-width: 1100px;
+  max-width: 1000px;
 `;
 export default class MainLayout extends React.Component {
   render() {

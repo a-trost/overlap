@@ -33,7 +33,7 @@ const Body = styled.div`
 
 const Logo = ({ className }) => (
   <div className={className}>
-    <img src={logo} alt="The Overlap" width="500px" />
+    <img src={logo} alt="The Overlap" />
   </div>
 );
 
@@ -48,7 +48,6 @@ const StyledLogo = styled(Logo)`
   img {
     width: 100%;
     height: auto;
-    max-width: 90%;
     text-align: center;
   }
 `;
@@ -63,7 +62,7 @@ class Index extends React.Component {
       playingIndex: 0,
       selectedTag: "",
       filterText: "",
-      scrolled:false,
+      scrolled: false
     };
     this.setSelectedIndex = this.setSelectedIndex.bind(this);
     this.setPlayingIndex = this.setPlayingIndex.bind(this);
@@ -78,12 +77,11 @@ class Index extends React.Component {
 
   trackScrolling = () => {
     const wrappedElement = document.getElementById("player");
-    const {scrolled} = this.state
-    if ((wrappedElement.getBoundingClientRect().top <= 0) !== scrolled) {
-      this.setState({scrolled: !scrolled})
+    const { scrolled } = this.state;
+    if (wrappedElement.getBoundingClientRect().top <= 0 !== scrolled) {
+      this.setState({ scrolled: !scrolled });
     }
-
-    }
+  };
 
   setSelectedIndex(index) {
     this.setState({ selectedIndex: index });
@@ -105,7 +103,7 @@ class Index extends React.Component {
     const episodeList = [];
     const { data } = this.props;
     const episodeEdges = data.allFeedOverlapPodcast.edges;
-    episodeEdges.forEach(({ node }, index) => {
+    episodeEdges.reverse().forEach(({ node }, index) => {
       this.compileTags(node.itunes.keywords.split(","));
       episodeList.push({
         title: node.title,
@@ -148,17 +146,21 @@ class Index extends React.Component {
       selectedTag,
       filterText,
       tags,
-      scrolled,
+      scrolled
     } = this.state;
     return (
       <>
         <Layout>
           <Helmet title={config.siteTitle} />
           <SEO />
-          <Header scrolled={scrolled}>
+          <Header>
             <StyledLogo />
             {episodeList.length > 0 && (
-              <Player scrolled={scrolled} episodeList={episodeList} playingIndex={playingIndex} />
+              <Player
+                scrolled={scrolled}
+                episodeList={episodeList}
+                playingIndex={playingIndex}
+              />
             )}
             <LinkButtons />
           </Header>

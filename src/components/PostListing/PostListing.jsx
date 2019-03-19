@@ -12,12 +12,11 @@ const EpisodeContainer = styled.div`
 const FilterBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  margin-bottom: 5px;
 `;
 
 const Episode = styled.div`
   border-bottom: 1px solid #eee;
-  padding: 0.25rem;
+  padding: 1rem 0.5rem;
   cursor: pointer;
   display: flex;
   flex-flow: row nowrap;
@@ -45,6 +44,7 @@ const Episode = styled.div`
     }
   }
   .detailWrapper {
+    width: 100%;
     h4 {
       margin: 0;
       font-size: 16px;
@@ -62,7 +62,7 @@ const Tag = styled.div`
   font-size: 11px;
   color: #333;
   background-color: ${props =>
-    props.selectedTag === props.tag ? "#f5c043cc" : "#ffffff"};
+    props.selectedTag === props.tag ? "#f5c043cc" : "transparent"};
   margin-right: 3px;
   border-radius: 10px;
   padding: 1px 5px;
@@ -99,13 +99,15 @@ class PostListing extends React.Component {
       setSelectedTag(data.value);
     };
 
+
     const tagOptions = tags
       ? tags.map(value => {
-          const viewValue = value[0].toUpperCase() + value.slice(1);
-          return { key: value, text: viewValue, value };
+          if (value) {
+            const viewValue = value[0].toUpperCase() + value.slice(1);
+            return { key: value, text: viewValue, value };
+          }
         })
       : [];
-
     return (
       <EpisodeContainer>
         <FilterBox>
@@ -139,7 +141,7 @@ class PostListing extends React.Component {
             >
               <div className="numberWrapper">
                 <span className="number">
-                  {formatEpisodeNumber(episodeList.length - index)}
+                  {formatEpisodeNumber(episode.episode)}
                 </span>
               </div>
               <div className="detailWrapper">
