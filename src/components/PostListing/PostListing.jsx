@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Dropdown, Input, Button, Icon } from 'semantic-ui-react'
+import { Dropdown, Input, Button, Icon } from "semantic-ui-react";
 import { formatEpisodeNumber } from "../../utils";
-import 'semantic-ui-css/semantic.min.css'
+import "semantic-ui-css/semantic.min.css";
 
 const EpisodeContainer = styled.div`
   border: 1px solid #eee;
@@ -14,25 +14,6 @@ const FilterBox = styled.div`
   flex-flow: column nowrap;
   margin-bottom: 5px;
 `;
-
-const Filter = styled.input`
-  background: white;
-  border: 1px solid #aaa;
-  font-size: 16px;
-  padding: 0.25rem 0.5rem;
-  width: 100%;
-`;
-
-// const Select = styled.select`
-//   background: white;
-//   border: 1px solid #aaa;
-//   font-size: 16px;
-//   padding: 0.25rem 0.5rem;
-//   width: 100%;
-//   height:30px;
-//   border-radius:0;
-//   color: #333;
-// `;
 
 const Episode = styled.div`
   border-bottom: 1px solid #eee;
@@ -118,19 +99,31 @@ class PostListing extends React.Component {
       setSelectedTag(data.value);
     };
 
-    const tagOptions = tags.map(value=>
-      { const viewValue = value[0].toUpperCase()+
-        value.slice(1)
-        return { key: value, text: viewValue, value }
-  }
-    )
+    const tagOptions = tags
+      ? tags.map(value => {
+          const viewValue = value[0].toUpperCase() + value.slice(1);
+          return { key: value, text: viewValue, value };
+        })
+      : [];
 
     return (
       <EpisodeContainer>
         <FilterBox>
-        <Input onChange={handleFilterChange} value={filterText} icon='search' placeholder='Filter...' />
-         
-          <Dropdown value={selectedTag} onChange={handleSelectChange} clearable options={tagOptions} selection placeholder="Topics" />
+          <Input
+            onChange={handleFilterChange}
+            value={filterText}
+            icon="search"
+            placeholder="Filter..."
+          />
+
+          <Dropdown
+            value={selectedTag}
+            onChange={handleSelectChange}
+            clearable
+            options={tagOptions}
+            selection
+            placeholder="Topics"
+          />
         </FilterBox>
 
         {filteredList &&
