@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { findDOMNode } from "react-dom";
 import { hot } from "react-hot-loader";
+import styled from "styled-components";
+import { Icon } from "semantic-ui-react";
 import ReactPlayer from "react-player";
 import Duration from "./duration";
-import styled from "styled-components";
 import logo from "../../../static/images/overlapLogoNoTagline.svg";
 
 const playIcon = (
@@ -49,6 +50,7 @@ const Container = styled.div`
   grid-area: player;
   z-index: 5;
   width: 100%;
+  border: 1px solid #ccc;
 `;
 
 const SpaceFiller = styled.div`
@@ -98,6 +100,7 @@ const PlayButton = styled.button`
   align-items: center;
   background-color: whitesmoke;
   position: relative;
+  border: none;
   :active {
     transform: translateY(2px);
   }
@@ -115,7 +118,7 @@ const Wrapper = styled.div`
 
 const TrackInfoContainer = styled.div`
   width: 100%;
-  background-color: #eee;
+  background-color: whitesmoke;
   height: 75%;
   position: relative;
   cursor: default;
@@ -126,7 +129,7 @@ const TrackInfoContainer = styled.div`
 
 const TrackName = styled.div`
   min-width: 150px;
-  flex: 5;
+  flex: 1;
   height: 100%;
   display: flex;
   flex-flow: row nowrap;
@@ -141,18 +144,14 @@ const TrackName = styled.div`
 `;
 
 const ControlBox = styled.div`
-  flex: 1;
-  min-width: 150px;
+  min-width: 50px;
   height: 100%;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
-  margin: 2px 0;
-  border-left: 1px solid #aaa;
-  padding: 0.5rem;
-  input {
-    width: 100%;
+  @media all and (max-width: 650px) {
+    min-width: unset;
   }
 `;
 
@@ -172,13 +171,61 @@ const SeekBar = styled.div`
 `;
 
 const SpeedButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: none;
+  width: 55px;
+  height: 35px;
+  font-size: 14px;
+  color: #777;
+  font-weight: 700;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: all 0.4s ease;
+  :hover {
+    border: 2px solid #999;
+    color: #444;
+  }
+  @media all and (max-width: 650px) {
+    width: 35px;
+    height: 35px;
+    margin-right: 0.5rem;
+  }
+`;
+
+const VolumeButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   background: none;
   border: none;
-  width: 100%;
-  height: 100%;
-  font-size: 14px;
-  font-weight: 700;
+  width: 55px;
+  height: 35px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  .volume {
+    transition: color 0.4s ease;
+    color: #777;
+  }
+  :hover {
+    border: 2px solid #999;
+    .volume {
+      color: #444;
+    }
+  }
   @media all and (max-width: 650px) {
+    width: 35px;
+    height: 35px;
+    margin-right: 0.5rem;
   }
 `;
 
@@ -192,7 +239,7 @@ class App extends Component {
       playing: true,
       controls: false,
       light: false,
-      volume: 0.8,
+      volume: 1,
       muted: false,
       played: 0,
       loaded: 0,
@@ -232,9 +279,7 @@ class App extends Component {
   setVolume = e => {
     this.setState({ volume: parseFloat(e.target.value) });
   };
-  setPlaybackRate = e => {
-    this.setState({ playbackRate: parseFloat(e.target.value) });
-  };
+
   onPlay = () => {
     // console.log("onPlay");
     this.setState({ playing: true });
@@ -278,11 +323,22 @@ class App extends Component {
   increaseSpeed = () => {
     const currentSpeed = this.state.playbackRate;
     const speeds = [1.0, 1.25, 1.5, 1.75, 2.0, 0.5];
-    if (this.state.playbackRate === 0.5) {
+    if (currentSpeed === 0.5) {
       this.setState({ playbackRate: parseFloat(speeds[0]) });
     } else {
       const currentIndex = speeds.indexOf(currentSpeed);
       this.setState({ playbackRate: parseFloat(speeds[currentIndex + 1]) });
+    }
+  };
+
+  increaseVolume = () => {
+    const currentVolume = this.state.volume;
+    const volumes = [1.0, 0, 0.5];
+    if (currentVolume === 0.5) {
+      this.setState({ volume: parseFloat(volumes[0]) });
+    } else {
+      const currentIndex = volumes.indexOf(currentVolume);
+      this.setState({ volume: parseFloat(volumes[currentIndex + 1]) });
     }
   };
 
@@ -359,7 +415,11 @@ class App extends Component {
               </Logo>
             )}
             <PlayButton onClick={this.playPause}>
-              {playing ? pauseIcon : playIcon}
+              {playing ? (
+                <Icon color="yellow" name="pause circle" size="huge" />
+              ) : (
+                <Icon color="yellow" name="play circle" size="huge" />
+              )}
             </PlayButton>
             <Wrapper>
               <TrackInfoContainer>
@@ -368,19 +428,25 @@ class App extends Component {
                 </TrackName>
                 <ControlBox>
                   <SpeedButton onClick={this.increaseSpeed}>
-                    Speed: {playbackRate}&times;
+                    {playbackRate}&times;
                   </SpeedButton>
                 </ControlBox>
                 <ControlBox>
-                  Volume:{" "}
-                  <input
-                    type="range"
-                    min={0}
-                    max={1}
-                    step="any"
-                    value={volume}
-                    onChange={this.setVolume}
-                  />
+                  <VolumeButton onClick={this.increaseVolume}>
+                    {volume === 1 && (
+                      <Icon className="volume" name="volume up" size="large" />
+                    )}
+                    {volume === 0.5 && (
+                      <Icon
+                        className="volume"
+                        name="volume down"
+                        size="large"
+                      />
+                    )}
+                    {volume === 0 && (
+                      <Icon className="volume" name="volume off" size="large" />
+                    )}
+                  </VolumeButton>
                 </ControlBox>
               </TrackInfoContainer>
               <SeekBarContainer
