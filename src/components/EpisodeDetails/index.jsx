@@ -12,39 +12,37 @@ const Episode = styled.article`
 `;
 
 const Header = styled.div`
-width:100%;
-display:flex;
-flex-flow: row nowrap
-justify-content: center;
-margin-bottom:1.5rem;
-;
- .numberWrapper {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  .numberWrapper {
     display: flex;
     position: static;
-		margin-right:1.5rem;
-    .number h4 {
-        font-size: 120px;
-        font-weight: 700;
-				letter-spacing:-6px;
-				font-kerning: normal;
-        margin: 0;
-        padding: 0;
-        line-height: 1;
-				color: ${props => props.color};
-				z-index: 3;
-      }
-    
- }
- @media all and (max-width:650px){
-flex-flow: column nowrap;
-
-  .numberWrapper {
-  .number h4 {
+    margin-right: 1.5rem;
+    h4 {
+      font-size: 120px;
+      font-weight: 700;
+      letter-spacing: -6px;
+      font-kerning: normal;
+      margin: 0;
+      padding: 0;
+      line-height: .6;
+      margin-bottom:1.5rem;
+      color: ${props => props.color};
+      z-index: 3;
+    }
+  }
+  @media all and (max-width: 650px) {
+    flex-flow: column nowrap;
+    .numberWrapper {
+      .number h4 {
         font-size: 70px;
-				letter-spacing:-2px;
-
-  }}
-}
+        letter-spacing: -2px;
+      }
+    }
+  }
 `;
 
 const Title = styled.h2`
@@ -82,16 +80,16 @@ const EpisodeInfo = styled.div`
   @media all and (max-width: 650px) {
     flex-flow: column nowrap;
     align-items: flex-start;
-    width:100%;
-    .ui.small.button.labeled{
-      width:100%;
-      margin-bottom:5px;
+    width: 100%;
+    .ui.small.button.labeled {
+      width: 100%;
+      margin-bottom: 5px;
     }
     .info {
       padding: 0.5rem 0;
-    align-items: flex-start;
-    text-align: left;
-  }
+      align-items: flex-start;
+      text-align: left;
+    }
   }
 `;
 
@@ -99,7 +97,7 @@ const ShowNotes = styled.div`
   font-size: 17px;
   line-height: 1.5;
   @media all and (max-width: 650px) {
-  font-size: 16px;
+    font-size: 16px;
   }
 `;
 
@@ -158,9 +156,7 @@ export default class EpisodeDetails extends Component {
               color={selectedEpisode.color}
             >
               <div className="numberWrapper">
-                <div className="number">
-                  <h4>{formatEpisodeNumber(selectedEpisode.episode)}</h4>
-                </div>
+                <h4>{formatEpisodeNumber(selectedEpisode.episode)}</h4>
               </div>
               <Title>{selectedEpisode.title}</Title>
             </Header>
