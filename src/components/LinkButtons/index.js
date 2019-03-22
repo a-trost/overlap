@@ -19,13 +19,13 @@ const LinkButton = styled.a`
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 4px;
+  border-radius: 3px;
   z-index: 4;
   border: none;
   text-decoration: none;
-  background-color: #bbb;
-  color: #555;
-  border: 1.5px solid #bbb;
+  background-color: #888;
+  color: #fff;
+  /* border: 1.5px solid #888; */
   padding: 0.2rem 2.5rem;
   font-size: 13px;
   font-weight: 700;
@@ -36,7 +36,7 @@ const LinkButton = styled.a`
   &:hover {
     background-color: ${props => props.bgColor || "#F0C043"};
     color: ${props => props.textColor || "white"};
-    border: 1.5px solid ${props => props.bgColor || "#F0C043"};
+    /* border: 1.5px solid ${props => props.bgColor || "#F0C043"}; */
     text-decoration: none;
   }
   &:active {
