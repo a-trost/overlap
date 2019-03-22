@@ -28,8 +28,8 @@ const Header = styled.div`
       font-kerning: normal;
       margin: 0;
       padding: 0;
-      line-height: .6;
-      margin-bottom:1.5rem;
+      line-height: 0.6;
+      margin-bottom: 1.5rem;
       color: ${props => props.color};
       z-index: 3;
     }
@@ -37,7 +37,7 @@ const Header = styled.div`
   @media all and (max-width: 650px) {
     flex-flow: column nowrap;
     .numberWrapper {
-      .number h4 {
+      h4 {
         font-size: 70px;
         letter-spacing: -2px;
       }
@@ -117,7 +117,7 @@ const TagRow = styled.div`
     margin-right: 8px;
   }
   .episodeTag.label.ui {
-  cursor: pointer;
+    cursor: pointer;
     margin-bottom:.25rem;
   }
 `;
