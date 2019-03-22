@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Icon } from "semantic-ui-react";
+import { Button, Icon, Label } from "semantic-ui-react";
 import styled from "styled-components";
 import moment from "moment";
 import { formatSeconds, formatEpisodeNumber } from "../../utils";
@@ -116,20 +116,9 @@ const TagRow = styled.div`
     font-weight: 700;
     margin-right: 8px;
   }
-`;
-
-const Tag = styled.button`
-  font-size: 13px;
-  color: #333;
-  background-color: ${props =>
-    props.selectedTag === props.tag ? "#f5c043cc" : "transparent"};
-  margin-right: 8px;
-  border-radius: 15px;
-  padding: 4px 12px;
-  border: none;
+  .episodeTag.label.ui {
   cursor: pointer;
-  :hover {
-    background-color: #f5c04344;
+    margin-bottom:.25rem;
   }
 `;
 
@@ -195,21 +184,21 @@ export default class EpisodeDetails extends Component {
                 <span>{formatSeconds(selectedEpisode.trackLength)}</span>
               </div>
             </EpisodeInfo>
-            <TagRow>
+            <Label>
               <span>Episode Tags:</span>
               {selectedEpisode.tags.split(",").map(tag => (
-                <Tag
-                  selectedTag={selectedTag}
-                  tag={tag.trim()}
-                  type="button"
-                  key={tag}
-                  className="tag"
+                <Label
+                  as="button"
                   onClick={() => setSelectedTag(tag.trim())}
+                  key={tag}
+                  
+                  color={selectedTag === tag.trim() ? "yellow" : ""}
+                  className="episodeTag"
                 >
                   {tag.trim()}
-                </Tag>
+                </Label>
               ))}
-            </TagRow>
+            </Label>
             <ShowNotes
               dangerouslySetInnerHTML={createMarkup(selectedEpisode.showNotes)}
             />

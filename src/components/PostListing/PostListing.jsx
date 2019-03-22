@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Dropdown, Input, Button, Icon } from "semantic-ui-react";
+import { Dropdown, Input, Label } from "semantic-ui-react";
 import { formatEpisodeNumber } from "../../utils";
-import "semantic-ui-css/semantic.min.css";
 
 const EpisodeContainer = styled.div`
   border: 1px solid #eee;
@@ -16,6 +15,8 @@ const FilterBox = styled.div`
 
 const Episode = styled.div`
   border-bottom: 1px solid #eee;
+  border-left: ${props =>
+    props.selected ? `4px solid ${props.color}` : "4px solid transparent"};
   padding: 1rem 0.5rem;
   cursor: pointer;
   display: flex;
@@ -23,6 +24,7 @@ const Episode = styled.div`
   align-items: center;
   position: relative;
   transition: background-color 0.4s;
+  background-color: white;
   :hover {
     background-color: #eee;
   }
@@ -56,6 +58,10 @@ const TagRow = styled.div`
   display: flex;
   flex-flow: row wrap;
   margin-top: 5px;
+  .episodeTag.ui.tiny.label {
+    background-color: transparent;
+    color: #888;
+  }
 `;
 
 const Tag = styled.div`
@@ -97,7 +103,6 @@ class PostListing extends React.Component {
     const handleSelectChange = (event, data) => {
       setSelectedTag(data.value);
     };
-
 
     const tagOptions = tags
       ? tags.map(value => {
@@ -147,14 +152,15 @@ class PostListing extends React.Component {
                 <h4>{episode.title}</h4>
                 <TagRow>
                   {episode.tags.split(",").map(tag => (
-                    <Tag
-                      selectedTag={selectedTag}
-                      tag={tag.trim()}
+                    <Label
+                      basic={!(selectedTag === tag.trim())}
+                      circular
+                      size="tiny"
+                      color={selectedTag === tag.trim() ? "yellow" : ""}
                       key={tag}
-                      className="tag"
-                    >
-                      {tag.trim()}
-                    </Tag>
+                      content={tag.trim()}
+                      className="episodeTag"
+                    />
                   ))}
                 </TagRow>
               </div>
