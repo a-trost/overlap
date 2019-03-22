@@ -33,7 +33,7 @@ const Body = styled.div`
   @media all and (max-width:650px){
   grid-template-areas: "episode-details" "episode-listing";
   grid-template-rows: auto auto;
-  grid-template-columns: auto;
+  grid-template-columns: 100%;
   }
 `;
 
