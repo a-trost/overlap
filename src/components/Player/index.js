@@ -77,11 +77,12 @@ const Player = styled.div`
 
 const Logo = styled.div`
   max-width: 200px;
-  background-color: white;
+  background-color: whitesmoke;
   padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-right: 1px solid #ddd;
   img {
     width: 100%;
     height: auto;
@@ -139,6 +140,9 @@ const TrackName = styled.div`
   overflow: hidden;
   @media all and (max-width: 650px) {
     align-items: flex-start;
+    min-width: unset;
+    white-space: nowrap;
+    box-shadow: inset 4px 0px 8px #ffffff33;
     justify-content: flex-start;
   }
 `;
@@ -165,7 +169,7 @@ const SeekBarContainer = styled.div`
 
 const SeekBar = styled.div`
   height: 100%;
-  background-color: #b12e1b;
+  background-color: #f2c043;
   width: ${props => props.position}%;
   position: absolute;
 `;
