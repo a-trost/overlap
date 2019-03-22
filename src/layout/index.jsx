@@ -2,6 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components";
 import config from "../../data/SiteConfig";
+import "semantic-ui-css/semantic.min.css";
 import "./index.css";
 
 const Outer = styled.div`
