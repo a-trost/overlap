@@ -184,7 +184,7 @@ export default class EpisodeDetails extends Component {
                 <span>{formatSeconds(selectedEpisode.trackLength)}</span>
               </div>
             </EpisodeInfo>
-            <Label>
+            <TagRow>
               <span>Episode Tags:</span>
               {selectedEpisode.tags.split(",").map(tag => (
                 <Label
@@ -198,7 +198,7 @@ export default class EpisodeDetails extends Component {
                   {tag.trim()}
                 </Label>
               ))}
-            </Label>
+            </TagRow>
             <ShowNotes
               dangerouslySetInnerHTML={createMarkup(selectedEpisode.showNotes)}
             />
