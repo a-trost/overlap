@@ -55,7 +55,7 @@ const Episode = styled.div`
       font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
         sans-serif;
-        font-weight: 700;
+      font-weight: 700;
       font-size: 16px;
       color: #555;
     }
@@ -72,16 +72,6 @@ const TagRow = styled.div`
   }
 `;
 
-const Tag = styled.div`
-  font-size: 11px;
-  color: #333;
-  background-color: ${props =>
-    props.selectedTag === props.tag ? "#f5c043cc" : "transparent"};
-  margin-right: 3px;
-  border-radius: 10px;
-  padding: 1px 5px;
-`;
-
 class PostListing extends React.Component {
   render() {
     const {
@@ -96,12 +86,11 @@ class PostListing extends React.Component {
     } = this.props;
 
     const filteredList = episodeList
-      ? episodeList.filter(episode => {
-          return (
+      ? episodeList.filter(
+          episode =>
             episode.title.toLowerCase().includes(filterText.toLowerCase()) &&
             episode.tags.toLowerCase().includes(selectedTag.toLowerCase())
-          );
-        })
+        )
       : [];
 
     const setSelectedEpisode = index => {
