@@ -11,7 +11,7 @@ import Player from "../components/Player";
 import EpisodeDetails from "../components/EpisodeDetails";
 import LinkButtons from "../components/LinkButtons";
 import Footer from "../components/Footer/Footer";
-import logo from "../../static/images/overlapLogoNoTagline.svg";
+import logo from "../../static/images/header-logo.svg";
 import { randomDegree, getColor } from "../utils";
 
 const Header = styled.div`
@@ -50,7 +50,7 @@ const StyledLogo = styled(Logo)`
   align-items: center;
   grid-area: logo;
   width: 100%;
-
+  margin-bottom:2rem;
   img {
     width: 100%;
     height: auto;
