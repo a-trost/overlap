@@ -51,6 +51,7 @@ const Container = styled.div`
   z-index: 5;
   width: 100%;
   border: 1px solid #ccc;
+  max-width: 100%;
 `;
 
 const SpaceFiller = styled.div`
@@ -69,9 +70,10 @@ const Player = styled.div`
   height: 75px;
   max-width: 1000px;
   @media all and (max-width: 650px) {
+    max-width: 100vw;
     left: ${props => (props.scrolled ? "0" : "unset")};
     right: ${props => (props.scrolled ? "0" : "unset")};
-    height: 55px;
+    height: 45px;
   }
 `;
 
@@ -94,7 +96,7 @@ const Logo = styled.div`
 
 const PlayButton = styled.button`
   cursor: pointer;
-  display: flex;
+  display: ${props => (props.size === "small" ? "none" : "flex")};
   height: 75px;
   width: 75px;
   justify-content: center;
@@ -106,8 +108,9 @@ const PlayButton = styled.button`
     transform: translateY(2px);
   }
   @media all and (max-width: 650px) {
-    height: 55px;
-    width: 55px;
+    display: ${props => (props.size === "small" ? "flex" : "none")};
+    height: 45px;
+    width: 45px;
   }
 `;
 
@@ -126,6 +129,9 @@ const TrackInfoContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  @media all and (max-width: 650px) {
+    height: 85%;
+  }
 `;
 
 const TrackName = styled.div`
@@ -141,9 +147,15 @@ const TrackName = styled.div`
   @media all and (max-width: 650px) {
     align-items: flex-start;
     min-width: unset;
-    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     box-shadow: inset 4px 0px 8px #ffffff33;
     justify-content: flex-start;
+    margin: 0;
+    padding: 2px 0;
+    h3 {
+      font-size: 15px;
+    }
   }
 `;
 
@@ -165,6 +177,9 @@ const SeekBarContainer = styled.div`
   height: 25%;
   position: relative;
   cursor: text;
+  @media all and (max-width: 650px) {
+    height: 15%;
+  }
 `;
 
 const SeekBar = styled.div`
@@ -199,6 +214,7 @@ const SpeedButton = styled.button`
     width: 35px;
     height: 35px;
     margin-right: 0.5rem;
+    font-size: 13px;
   }
 `;
 
@@ -425,6 +441,13 @@ class App extends Component {
                 <Icon color="yellow" name="play circle" size="huge" />
               )}
             </PlayButton>
+            <PlayButton size="small" onClick={this.playPause}>
+              {playing ? (
+                <Icon color="yellow" name="pause circle" size="big" />
+              ) : (
+                <Icon color="yellow" name="play circle" size="big" />
+              )}
+            </PlayButton>
             <Wrapper>
               <TrackInfoContainer>
                 <TrackName>
@@ -438,17 +461,13 @@ class App extends Component {
                 <ControlBox>
                   <VolumeButton onClick={this.increaseVolume}>
                     {volume === 1 && (
-                      <Icon className="volume" name="volume up" size="large" />
+                      <Icon className="volume" name="volume up" />
                     )}
                     {volume === 0.5 && (
-                      <Icon
-                        className="volume"
-                        name="volume down"
-                        size="large"
-                      />
+                      <Icon className="volume" name="volume down" />
                     )}
                     {volume === 0 && (
-                      <Icon className="volume" name="volume off" size="large" />
+                      <Icon className="volume" name="volume off" />
                     )}
                   </VolumeButton>
                 </ControlBox>
