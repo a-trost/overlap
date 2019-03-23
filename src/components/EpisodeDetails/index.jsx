@@ -59,7 +59,7 @@ const Title = styled.h2`
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   letter-spacing: -2px;
   @media all and (max-width: 650px) {
-    font-size: 40px;
+    font-size: 34px;
   }
 `;
 
