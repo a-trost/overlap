@@ -49,6 +49,12 @@ const LinkButton = styled.a`
 
 const hostList = [
   {
+    text: "iTunes",
+    bgColor: "#C643E5",
+    textColor: "#ffffff",
+    url: "https://itunes.apple.com/us/podcast/the-overlap/id1456924963"
+  },
+  {
     text: "Spotify",
     bgColor: "#65D36E",
     textColor: "#ffffff",
