@@ -22,6 +22,9 @@ const Header = styled.div`
     position: static;
     margin-right: 1.5rem;
     h4 {
+      font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
       font-size: 120px;
       font-weight: 700;
       letter-spacing: -6px;
@@ -52,6 +55,8 @@ const Title = styled.h2`
   font-weight: 700;
   line-height: 1.05;
   color: #444;
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   letter-spacing: -2px;
   @media all and (max-width: 650px) {
     font-size: 40px;
@@ -118,7 +123,7 @@ const TagRow = styled.div`
   }
   .episodeTag.label.ui {
     cursor: pointer;
-    margin-bottom:.25rem;
+    margin-bottom: 0.25rem;
   }
 `;
 
@@ -191,7 +196,6 @@ export default class EpisodeDetails extends Component {
                   as="button"
                   onClick={() => setSelectedTag(tag.trim())}
                   key={tag}
-                  
                   color={selectedTag === tag.trim() ? "yellow" : ""}
                   className="episodeTag"
                 >

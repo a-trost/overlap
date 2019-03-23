@@ -35,6 +35,9 @@ const Episode = styled.div`
     align-items: center;
     padding: 1rem 0.5rem;
     .number {
+      font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
       margin-right: 8px;
       color: ${props => (props.selected ? props.color : "#444")};
       font-size: 30px;
@@ -49,7 +52,12 @@ const Episode = styled.div`
     width: 100%;
     h4 {
       margin: 0;
+      font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+        font-weight: 700;
       font-size: 16px;
+      color: #555;
     }
   }
 `;
