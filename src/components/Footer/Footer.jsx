@@ -89,7 +89,7 @@ class Footer extends Component {
           <h4>Co-Hosts / Cousins</h4>
         </div>
         <Profile>
-          <Avatar src={ellePicture} />
+          <Avatar src={ellePicture} alt="Elle Trost Portrait" />
           <TextWrapper>
             <h4 className="name">Elle Trost</h4>
             <h5 className="title">Graphic Designer</h5>
@@ -111,7 +111,7 @@ class Footer extends Component {
         </Profile>
 
         <Profile>
-          <Avatar src={alexPicture} />
+          <Avatar src={alexPicture} alt="Alex Trost Portrait" />
           <TextWrapper>
             <h4 className="name">Alex Trost</h4>
             <h5 className="title">Web Developer</h5>
