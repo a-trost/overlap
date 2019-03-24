@@ -101,6 +101,9 @@ const EpisodeInfo = styled.div`
 const ShowNotes = styled.div`
   font-size: 17px;
   line-height: 1.5;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
   @media all and (max-width: 650px) {
     font-size: 16px;
   }
