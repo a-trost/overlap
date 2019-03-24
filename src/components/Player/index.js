@@ -434,14 +434,18 @@ class App extends Component {
                 <img src={logo} alt="The Overlap" />
               </Logo>
             )}
-            <PlayButton onClick={this.playPause}>
+            <PlayButton onClick={this.playPause} aria-label="Play Button">
               {playing ? (
                 <Icon color="yellow" name="pause circle" size="huge" />
               ) : (
                 <Icon color="yellow" name="play circle" size="huge" />
               )}
             </PlayButton>
-            <PlayButton size="small" onClick={this.playPause}>
+            <PlayButton
+              size="small"
+              onClick={this.playPause}
+              aria-label="Play Button"
+            >
               {playing ? (
                 <Icon color="yellow" name="pause circle" size="big" />
               ) : (
@@ -454,12 +458,18 @@ class App extends Component {
                   <h3>{title}</h3>
                 </TrackName>
                 <ControlBox>
-                  <SpeedButton onClick={this.increaseSpeed}>
+                  <SpeedButton
+                    onClick={this.increaseSpeed}
+                    aria-label="Play Speed"
+                  >
                     {playbackRate}&times;
                   </SpeedButton>
                 </ControlBox>
                 <ControlBox>
-                  <VolumeButton onClick={this.increaseVolume}>
+                  <VolumeButton
+                    onClick={this.increaseVolume}
+                    aria-label="Play Volume"
+                  >
                     {volume === 1 && (
                       <Icon className="volume" name="volume up" />
                     )}
