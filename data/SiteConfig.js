@@ -1,9 +1,9 @@
 const config = {
-  siteTitle: "The Overlap Podcast - Design and Web Dev", // Site title.
+  siteTitle: "The Overlap Podcast - Design and Web Development", // Site title.
   siteTitleShort: "The Overlap", // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
   siteTitleAlt: "The Overlap Podcast - Design and Web Dev", // Alternative site title for SEO.
   siteLogo: "/logos/logo-1024.png", // Logo used for SEO and manifest.
-  siteUrl: "https://www.theoverlappodcast.com", // Domain of your website without pathPrefix.
+  siteUrl: "https://www.overlappodcast.com", // Domain of your website without pathPrefix.
   pathPrefix: "", // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
   siteDescription:
     "The Overlap is a podcast that explores the intersection of Design and Front End Development. On the show we discuss all things design and development in a fun and easy-to-listen-to way. Some topics we cover are typography, React, productivity, focus, designing for print, freelancing tips, and much more.", // Website description used for RSS feeds/meta description tag.
