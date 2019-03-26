@@ -25,7 +25,7 @@ const Description = styled.p`
 export default class EmailModal extends Component {
   constructor(props) {
     super(props);
-    this.state = { modalOpen: false, submitted: false, error: "" };
+    this.state = { modalOpen: false, submitted: false, error: "", name:"", question:"" };
   }
 
   handleChange = e => {
@@ -41,7 +41,7 @@ export default class EmailModal extends Component {
       body: encode({
         "form-name": "contact",
         name: this.state.name,
-        question: this.state.message
+        question: this.state.question
       })
     })
       .then(() => this.setState({ submitted: true }))
