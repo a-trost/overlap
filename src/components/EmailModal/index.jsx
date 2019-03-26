@@ -39,7 +39,7 @@ export default class EmailModal extends Component {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
-        "form-name": "Question Form",
+        "form-name": "contact",
         name: this.state.name,
         question: this.state.message
       })
@@ -98,12 +98,12 @@ export default class EmailModal extends Component {
           )}
           <Form
             name="contact"
-            method="post"
+            method="POST"
             // action="/thanks/"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             onSubmit={this.handleSubmit}
-            netlify
+            netlify="true"
           >
             {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
             <input type="hidden" name="form-name" value="contact" />
