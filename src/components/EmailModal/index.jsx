@@ -33,8 +33,6 @@ export default class EmailModal extends Component {
   };
 
   handleSubmit = e => {
-    e.preventDefault();
-    const form = e.target;
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -46,7 +44,8 @@ export default class EmailModal extends Component {
     })
       .then(() => this.setState({ submitted: true }))
       .catch(error => alert(error));
-  };
+      e.preventDefault();
+    };
 
   handleOpen = () => {
     this.setState({ modalOpen: true, submitted: false });
