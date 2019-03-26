@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import { Link } from "gatsby";
+// import { Link } from "gatsby";
 import "./Footer.css";
+import { Button, Icon, Modal, Header, Image, } from "semantic-ui-react";
+
 import styled from "styled-components";
 import ellePicture from "../../../static/images/elle.jpg";
 import alexPicture from "../../../static/images/alex.jpg";
+import EmailModal from "../EmailModal";
+import SponsorModal from "../SponsorModal";
 
 const FooterComponent = styled.footer`
   width: 100%;
@@ -12,20 +16,32 @@ const FooterComponent = styled.footer`
   padding: 2rem;
   padding-bottom: 1rem;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
+  a {
+    color: #d73721;
+  }
   .header {
     flex: 1 100%;
     text-align: center;
     h4 {
       color: #555;
-      font-size:1.3rem;
+      font-size: 22px;
     }
   }
+  .profiles {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 1rem;
+  }
+  .links {
+    display: flex;
+    flex-flow: row wrap;
+  }
   .copyright {
-    color: #aaa;
+    color: #777;
     flex: 1 100%;
     font-size: 14px;
     letter-spacing: 0.3px;
@@ -34,6 +50,11 @@ const FooterComponent = styled.footer`
   }
   @media all and (max-width: 600px) {
     padding: 1rem;
+    .footerButton {
+      width: 100%;
+      margin-bottom: 0.5rem;
+      padding: 1rem;
+    }
   }
 `;
 
@@ -84,56 +105,75 @@ const TextWrapper = styled.div`
 class Footer extends Component {
   render() {
     return (
-      <FooterComponent>
-        <div className="header">
-          <h4>Co-Hosts / Cousins</h4>
-        </div>
-        <Profile>
-          <Avatar src={ellePicture} alt="Elle Trost Portrait" />
-          <TextWrapper>
-            <h4 className="name">Elle Trost</h4>
-            <h5 className="title">Graphic Designer</h5>
-            <a
+      <>
+        <FooterComponent>
+          <div className="header">
+            <h4>Co-Hosts / Cousins</h4>
+          </div>
+          <div className="profiles">
+            <Profile>
+              <Avatar src={ellePicture} alt="Elle Trost Portrait" />
+              <TextWrapper>
+                <h4 className="name">Elle Trost</h4>
+                <h5 className="title">Graphic Designer</h5>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://twitter.com/lovelettersco"
+                >
+                  @lovelettersco
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.trostliketoast.com/"
+                >
+                  Website
+                </a>
+              </TextWrapper>
+            </Profile>
+            <Profile>
+              <Avatar src={alexPicture} alt="Alex Trost Portrait" />
+              <TextWrapper>
+                <h4 className="name">Alex Trost</h4>
+                <h5 className="title">Web Developer</h5>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://twitter.com/mistertrost"
+                >
+                  @mistertrost
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.atrost.com"
+                >
+                  Website
+                </a>
+              </TextWrapper>
+            </Profile>
+          </div>
+          <div className="links">
+            <Button
+              as="a"
+              href="https://twitter.com/overlappod"
               target="_blank"
               rel="noopener noreferrer"
-              href="https://twitter.com/lovelettersco"
+              className="footerButton"
+              size="small"
+              basic
+              color="red"
             >
-              @lovelettersco
-            </a>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.trostliketoast.com/"
-            >
-              Website
-            </a>
-          </TextWrapper>
-        </Profile>
-
-        <Profile>
-          <Avatar src={alexPicture} alt="Alex Trost Portrait" />
-          <TextWrapper>
-            <h4 className="name">Alex Trost</h4>
-            <h5 className="title">Web Developer</h5>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://twitter.com/mistertrost"
-            >
-              @mistertrost
-            </a>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.atrost.com"
-            >
-              Website
-            </a>
-          </TextWrapper>
-        </Profile>
-
-        <p className="copyright">Copyright ©2019 - The Overlap</p>
-      </FooterComponent>
+              <Icon name="twitter" />
+              Follow Us!
+            </Button>
+            <EmailModal />
+            <SponsorModal />
+          </div>
+          <p className="copyright">Copyright ©2019 - Elle Trost & Alex Trost</p>
+        </FooterComponent>
+      </>
     );
   }
 }
