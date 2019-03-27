@@ -33,18 +33,18 @@ export default class EmailModal extends Component {
   };
 
   handleSubmit = e => {
+    e.preventDefault();
+    const form = e.target;
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
-        "form-name": "contact",
-        name: this.state.name,
-        question: this.state.question
-      })
+        "form-name": form.getAttribute("name"),
+        ...this.state,
+      }),
     })
       .then(() => this.setState({ submitted: true }))
       .catch(error => alert(error));
-      e.preventDefault();
     };
 
   handleOpen = () => {
@@ -98,7 +98,7 @@ export default class EmailModal extends Component {
           <Form
             name="contact"
             method="POST"
-            // action="/thanks/"
+            action="/"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             onSubmit={this.handleSubmit}
@@ -106,19 +106,21 @@ export default class EmailModal extends Component {
           >
             {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
             <input type="hidden" name="form-name" value="contact" />
-            <Form.Field hidden>
+            <p hidden>
               <label>
                 Don’t fill this out:{" "}
                 <input name="bot-field" onChange={this.handleChange} />
               </label>
-            </Form.Field>
+            </p>
             <Form.Field
               id="form-input-control-name"
               control={Input}
               label="Name"
-              placeholder="Your Name"
+
+              type="text"
               name="name"
               onChange={this.handleChange}
+              required
             />
 
             <Form.Field
