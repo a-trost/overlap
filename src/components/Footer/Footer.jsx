@@ -168,8 +168,8 @@ class Footer extends Component {
               <Icon name="twitter" />
               Follow Us!
             </Button>
-            <EmailModal />
-            <SponsorModal />
+            {/* <EmailModal />
+            <SponsorModal /> */}
           </div>
           <p className="copyright">Copyright ©2019 - Elle Trost & Alex Trost</p>
         </FooterComponent>
