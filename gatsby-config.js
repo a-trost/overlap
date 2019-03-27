@@ -36,6 +36,9 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-sitemap`
+    },
+    {
       resolve: `gatsby-source-rss-feed`,
       options: {
         url: `https://feeds.buzzsprout.com/255972.rss`, //Overlap
@@ -107,6 +110,14 @@ module.exports = {
             type: "image/png"
           }
         ]
+      }
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://www.overlappodcast.com",
+        sitemap: "https://www.overlappodcast.com/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }]
       }
     },
     "gatsby-plugin-remove-serviceworker",
