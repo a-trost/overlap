@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 // import { Link } from "gatsby";
 import "./Footer.css";
-import { Button, Icon, Modal, Header, Image, } from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
 
 import styled from "styled-components";
-import ellePicture from "../../../static/images/elle.jpg";
-import alexPicture from "../../../static/images/alex.jpg";
-import EmailModal from "../EmailModal";
-import SponsorModal from "../SponsorModal";
+import ellePicture from "./elle.jpg";
+import alexPicture from "./alex.jpg";
+// import EmailModal from "../EmailModal";
+// import SponsorModal from "../SponsorModal";
 
 const FooterComponent = styled.footer`
   width: 100%;
