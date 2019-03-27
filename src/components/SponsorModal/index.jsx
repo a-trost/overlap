@@ -93,7 +93,7 @@ export default class SponsorModal extends Component {
             />
           )}
           <Form
-            name="contact"
+            name="sponsor"
             method="post"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
@@ -101,7 +101,7 @@ export default class SponsorModal extends Component {
             netlify
           >
             {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="form-name" value="sponsor" />
             <Form.Field hidden>
               <label>
                 Don’t fill this out:{" "}
