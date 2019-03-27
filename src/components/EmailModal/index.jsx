@@ -10,6 +10,7 @@ import {
   TextArea
 } from "semantic-ui-react";
 import styled from "styled-components";
+import EmailForm from "../EmailForm";
 
 function encode(data) {
   return Object.keys(data)
@@ -101,38 +102,7 @@ export default class EmailModal extends Component {
               content="Hopefully we'll be able to get to your question on the podcast. Thanks so much for taking the time to ask it!"
             />
           )}
-          <section id="contact">
-            <div className="inner">
-              <section>
-                <form
-                  name="contact"
-                  method="post"
-                  action="/thanks/"
-                  data-netlify="true"
-                  data-netlify-honeypot="bot-field"
-                >
-                  <input type="hidden" name="bot-field" />
-                  <div className="field half first">
-                    <label htmlFor="name">Name</label>
-                    <input type="text" name="name" id="name" required />
-                  </div>
-                  <div className="field">
-                    <label htmlFor="message">Message</label>
-                    <textarea name="message" id="message" rows="6" required />
-                  </div>
-                  <ul className="actions">
-                    <li>
-                      <input
-                        type="submit"
-                        value="Send Message"
-                        className="special"
-                      />
-                    </li>
-                  </ul>
-                </form>
-              </section>
-            </div>
-          </section>
+          <EmailForm />
         </Modal.Content>
         {/* <Modal.Actions>
           <Button color="green" onClick={this.handleClose} inverted>
