@@ -16,7 +16,7 @@ const Inner = styled.div`
   width: 100%;
   max-width: 1000px;
   @media all and (max-width: 650px) {
-    padding:1rem;
+    padding: 1rem;
   }
 `;
 export default class MainLayout extends React.Component {
@@ -27,6 +27,8 @@ export default class MainLayout extends React.Component {
         <Inner>
           <Helmet>
             <meta name="description" content={config.siteDescription} />
+            <meta charset="UTF-8" />
+            <meta httpEquiv="Content-Language" content="en" />
           </Helmet>
           {children}
         </Inner>
