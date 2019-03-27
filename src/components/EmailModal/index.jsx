@@ -95,17 +95,56 @@ export default class EmailModal extends Component {
               content="Hopefully we'll be able to get to your question on the podcast. Thanks so much for taking the time to ask it!"
             />
           )}
-         <form name="contact" netlify>
-  <p>
-    <label>Name <input type="text" name="name" /></label>
-  </p>
-  <p>
-    <label>Email <input type="email" name="email" /></label>
-  </p>
-  <p>
-    <button type="submit">Send</button>
-  </p>
-</form>
+          <Form
+            name="contact"
+            method="post"
+            action="/"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            onSubmit={this.handleSubmit}
+            netlify="true"
+          >
+            {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden>
+              <label>
+                Don’t fill this out:{" "}
+                <input name="bot-field" onChange={this.handleChange} />
+              </label>
+            </p>
+            <Form.Field
+              id="form-input-control-name"
+              control={Input}
+              label="Name"
+
+              type="text"
+              name="name"
+              onChange={this.handleChange}
+              required
+            />
+
+            <Form.Field
+              id="form-textarea-control-name"
+              control={TextArea}
+              label="Question"
+              placeholder="Your Question"
+              name="question"
+              onChange={this.handleChange}
+            />
+            {!submitted && (
+              <Button color="blue" type="submit" animated>
+                <Button.Content visible>Send</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="paper plane" />
+                </Button.Content>
+              </Button>
+            )}
+            {submitted && (
+              <Button type="button" disabled>
+                Sent!
+              </Button>
+            )}
+          </Form>
         </Modal.Content>
         {/* <Modal.Actions>
           <Button color="green" onClick={this.handleClose} inverted>
