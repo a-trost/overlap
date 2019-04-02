@@ -12,7 +12,7 @@ class SEO extends Component {
     const { postNode, postPath, postSEO } = this.props;
     let title;
     let description;
-    let image= overlapLogo;
+    let image = overlapLogo;
     let postURL;
     if (postSEO) {
       const postMeta = postNode.frontmatter;
@@ -71,21 +71,21 @@ class SEO extends Component {
     }
     return (
       <Helmet
-      link={[
-        {
-          rel: "icon",
-          type: "image/png",
-          sizes: "16x16",
-          href: `${favicon16}`
-        },
-        {
-          rel: "icon",
-          type: "image/png",
-          sizes: "32x32",
-          href: `${favicon32}`
-        },
-        { rel: "shortcut icon", type: "image/png", href: `${favicon64}` }
-      ]}
+        link={[
+          {
+            rel: "icon",
+            type: "image/png",
+            sizes: "16x16",
+            href: `${favicon16}`
+          },
+          {
+            rel: "icon",
+            type: "image/png",
+            sizes: "32x32",
+            href: `${favicon32}`
+          },
+          { rel: "shortcut icon", type: "image/png", href: `${favicon64}` }
+        ]}
       >
         {/* General tags */}
         <meta name="description" content={description} />
@@ -95,7 +95,7 @@ class SEO extends Component {
         <script type="application/ld+json">
           {JSON.stringify(schemaOrgJSONLD)}
         </script>
-{/* 
+        {/* 
         <meta property="og:url" content={postSEO ? postURL : blogURL} />
         {postSEO ? <meta property="og:type" content="article" /> : null}
         <meta property="og:title" content={title} />
@@ -115,20 +115,38 @@ class SEO extends Component {
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} /> */}
 
-<meta name="title" content="The Overlap Podcast - Design and Web Dev"/>
-<meta name="description" content="A podcast for Graphic Designers, Web Developers and everyone inbetween."/>
+        <meta name="title" content="The Overlap Podcast - Design and Web Dev" />
+        <meta
+          name="description"
+          content="A podcast for Graphic Designers, Web Developers and everyone inbetween."
+        />
 
-<meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.overlappodcast.com/"/>
-<meta property="og:title" content="The Overlap Podcast - Design and Web Dev"/>
-<meta property="og:description" content="A podcast for Graphic Designers, Web Developers and everyone inbetween."/>
-<meta property="og:image" content={overlapLogo}/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.overlappodcast.com/" />
+        <meta
+          property="og:title"
+          content="The Overlap Podcast - Design and Web Dev"
+        />
+        <meta
+          property="og:description"
+          content="A podcast for Graphic Designers, Web Developers and everyone inbetween."
+        />
+        <meta property="og:image" content={image} />
 
-<meta property="twitter:card" content="summary_large_image"/>
-<meta property="twitter:url" content="https://www.overlappodcast.com/"/>
-<meta property="twitter:title" content="The Overlap Podcast - Design and Web Dev"/>
-<meta property="twitter:description" content="A podcast for Graphic Designers, Web Developers and everyone inbetween."/>
-<meta property="twitter:image" content={overlapLogo}/>
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content="https://www.overlappodcast.com/"
+        />
+        <meta
+          property="twitter:title"
+          content="The Overlap Podcast - Design and Web Dev"
+        />
+        <meta
+          property="twitter:description"
+          content="A podcast for Graphic Designers, Web Developers and everyone inbetween."
+        />
+        <meta property="twitter:image" content={image} />
       </Helmet>
     );
   }
