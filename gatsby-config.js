@@ -28,6 +28,12 @@ module.exports = {
     "gatsby-plugin-lodash",
     "gatsby-plugin-styled-components",
     {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/layout/index.jsx`)
+      }
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "assets",
@@ -119,6 +125,7 @@ module.exports = {
       }
     },
     "gatsby-plugin-remove-serviceworker",
+    // THIS CREATES THE RSS FEED FOR THIS SITE
     // {
     //   resolve: "gatsby-plugin-feed",
     //   options: {
