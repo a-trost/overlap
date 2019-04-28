@@ -57,3 +57,6 @@ public/
 
 # Bundle stats
 bundle-stats.json
+src/templates/backupcategory.j
+src/templates/backup.j
+gnbackup.js
