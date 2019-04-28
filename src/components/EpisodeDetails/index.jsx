@@ -3,6 +3,7 @@ import { Button, Icon, Label } from "semantic-ui-react";
 import styled from "styled-components";
 import moment from "moment";
 import { formatSeconds, formatEpisodeNumber } from "../../utils";
+import ContextConsumer from "../Context";
 
 const Episode = styled.article`
   grid-area: episode-details;
@@ -98,16 +99,16 @@ const EpisodeInfo = styled.div`
   }
 `;
 
-const ShowNotes = styled.div`
-  font-size: 17px;
-  line-height: 1.5;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-  @media all and (max-width: 650px) {
-    font-size: 16px;
-  }
-`;
+// const ShowNotes = styled.div`
+//   font-size: 17px;
+//   line-height: 1.5;
+//   overflow-wrap: break-word;
+//   word-wrap: break-word;
+//   word-break: break-word;
+//   @media all and (max-width: 650px) {
+//     font-size: 16px;
+//   }
+// `;
 
 const TagRow = styled.div`
   display: flex;
@@ -130,88 +131,97 @@ const TagRow = styled.div`
   }
 `;
 
-const createMarkup = html => {
-  return { __html: html };
-};
+// const createMarkup = html => {
+//   return { __html: html };
+// };
 
 export default class EpisodeDetails extends Component {
   render() {
-    const {
-      episodeList,
-      selectedIndex,
-      setPlayingIndex,
-      setSelectedTag,
-      selectedTag
-    } = this.props;
-    const selectedEpisode = episodeList[selectedIndex];
-    return (
-      <Episode>
-        {selectedEpisode && (
-          <>
-            <Header
-              degree={selectedEpisode.degree}
-              color={selectedEpisode.color}
-            >
-              <div className="numberWrapper">
-                <h4>{formatEpisodeNumber(selectedEpisode.episode)}</h4>
-              </div>
-              <Title>{selectedEpisode.title}</Title>
-            </Header>
-            <EpisodeInfo>
-              <Button
-                className="button"
-                size="small"
-                onClick={() => {
-                  setPlayingIndex(selectedIndex);
-                }}
-                icon
-                labelPosition="left"
-              >
-                <Icon name="play" />
-                Play Episode {formatEpisodeNumber(selectedEpisode.episode)}
-              </Button>
+    // const {
+    //   episodeList,
+    //   selectedIndex,
+    //   setPlayingIndex,
+    //   setSelectedTag,
+    //   selectedTag
+    // } = this.props;
+    const selectedIndex = 0;
+    
+    // const selectedEpisode = data.episodeList[selectedIndex];
 
-              <Button
-                className="button"
-                size="small"
-                href={selectedEpisode.mp3Url}
-                icon
-                labelPosition="left"
-              >
-                <Icon name="download" />
-                Download Episode
-              </Button>
-              <div className="info">
-                <span className="title">Published</span>
-                <span>
-                  {moment(selectedEpisode.date).format("MMM Do YYYY")}
-                </span>
-              </div>
-              <div className="info">
-                <span className="title">Length</span>
-                <span>{formatSeconds(selectedEpisode.trackLength)}</span>
-              </div>
-            </EpisodeInfo>
-            <TagRow>
-              <span>Episode Tags:</span>
-              {selectedEpisode.tags.split(",").map(tag => (
-                <Label
-                  as="button"
-                  onClick={() => setSelectedTag(tag.trim())}
-                  key={tag}
-                  color={selectedTag === tag.trim() ? "yellow" : ""}
-                  className="episodeTag"
+    return (
+      <ContextConsumer>
+        {({ data, set }) => (
+          <Episode>
+            {() => {console.log(data)}}
+            {data.episodeList[selectedIndex] && (
+              <>
+                <Header
+                  degree={data.episodeList[selectedIndex].degree}
+                  color={data.episodeList[selectedIndex].color}
                 >
-                  {tag.trim()}
-                </Label>
-              ))}
-            </TagRow>
-            <ShowNotes
+                  <div className="numberWrapper">
+                    <h4>{formatEpisodeNumber(data.episodeList[selectedIndex].episode)}</h4>
+                  </div>
+                  <Title>{data.episodeList[selectedIndex].title}</Title>
+                </Header>
+                <EpisodeInfo>
+                  <Button
+                    className="button"
+                    size="small"
+                    onClick={() => {
+                      setPlayingIndex(data.selectedIndex);
+                    }}
+                    icon
+                    labelPosition="left"
+                  >
+                    <Icon name="play" />
+                    Play Episode
+                    {formatEpisodeNumber(data.episodeList[selectedIndex].episode)}
+                  </Button>
+
+                  <Button
+                    className="button"
+                    size="small"
+                    href={data.episodeList[selectedIndex].mp3Url}
+                    icon
+                    labelPosition="left"
+                  >
+                    <Icon name="download" />
+                    Download Episode
+                  </Button>
+                  <div className="info">
+                    <span className="title">Published</span>
+                    <span>
+                      {moment(data.episodeList[selectedIndex].date).format("MMM Do YYYY")}
+                    </span>
+                  </div>
+                  <div className="info">
+                    <span className="title">Length</span>
+                    <span>{formatSeconds(data.episodeList[selectedIndex].trackLength)}</span>
+                  </div>
+                </EpisodeInfo>
+                <TagRow>
+                  <span>Episode Tags:</span>
+                  {data.episodeList[selectedIndex].tags.split(",").map(tag => (
+                    <Label
+                      as="button"
+                      onClick={() => setSelectedTag(tag.trim())}
+                      key={tag}
+                      color={selectedTag === tag.trim() ? "yellow" : ""}
+                      className="episodeTag"
+                    >
+                      {tag.trim()}
+                    </Label>
+                  ))}
+                </TagRow>
+                {/* <ShowNotes
               dangerouslySetInnerHTML={createMarkup(selectedEpisode.showNotes)}
-            />
-          </>
+            /> */}
+              </>
+            )}
+          </Episode>
         )}
-      </Episode>
+      </ContextConsumer>
     );
   }
 }
