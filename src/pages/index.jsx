@@ -2,7 +2,6 @@ import React from "react";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import styled from "styled-components";
-import Layout from "../layout";
 import PostListing from "../components/PostListing/PostListing";
 import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
@@ -23,10 +22,8 @@ class Index extends React.Component {
     //   filterText,
     //   tags,
     // } = this.state;
-
     return (
       <>
-        <Layout>
        
             {/* <EpisodeDetails
               episodeList={episodeList}
@@ -45,9 +42,7 @@ class Index extends React.Component {
               filterText={filterText}
               handleFilterChange={this.handleFilterChange}
             /> */}
-       
-  
-        </Layout>
+  Home!
       </>
     );
   }
