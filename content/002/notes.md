@@ -1,7 +1,7 @@
 ---
 episode: "2"
 type: "notes"
-slug: "print-tips-for-developers"
+slug: "002-print-tips-for-developers"
 ---
 
 Print's not dead! On this episode, we talk about why color looks different on screen and on paper, how best to handle a document for print, tips on handling fonts, and the difference between Adobe Illustrator and Indesign.

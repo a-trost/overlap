@@ -1,6 +1,6 @@
 ---
 episode: "1"
-slug: "pricing-structures"
+slug: "001-pricing-structures"
 type: "transcript"
 ---
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
