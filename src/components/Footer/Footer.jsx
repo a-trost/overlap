@@ -161,12 +161,25 @@ class Footer extends Component {
               target="_blank"
               rel="noopener noreferrer"
               className="footerButton"
-              size="small"
+              size="tiny"
               basic
               color="red"
             >
               <Icon name="twitter" />
-              Follow Us!
+              Twitter
+            </Button>
+            <Button
+              as="a"
+              href="https://instagram.com/overlappodcast"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footerButton"
+              size="tiny"
+              basic
+              color="red"
+            >
+              <Icon name="instagram" />
+              Instagram
             </Button>
             {/* <EmailModal />
             <SponsorModal /> */}
