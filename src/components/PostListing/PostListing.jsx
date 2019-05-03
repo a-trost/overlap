@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Dropdown, Input, Label } from "semantic-ui-react";
-import { formatEpisodeNumber } from "../../utils";
+import { navigate } from "gatsby";
+import { formatEpisodeNumber, getColor } from "../../utils";
 
 const EpisodeContainer = styled.div`
   border: 1px solid #eee;
@@ -82,16 +83,26 @@ class PostListing extends React.Component {
       selectedTag,
       setSelectedTag,
       handleFilterChange,
-      tags
+      tags,
+      markdownRemark,
+      feedOverlapPodcast,
+      allFeedOverlapPodcast,
+      allMarkdownRemark
     } = this.props;
 
-    const filteredList = episodeList
-      ? episodeList.filter(
-          episode =>
-            episode.title.toLowerCase().includes(filterText.toLowerCase()) &&
-            episode.tags.toLowerCase().includes(selectedTag.toLowerCase())
-        )
-      : [];
+    const episodeSlugs = {};
+    allMarkdownRemark.edges.forEach(({ node }) => {
+      episodeSlugs[node.frontmatter.episode] = node.frontmatter.slug;
+    });
+
+    // * Bring this back when you bring back the filter features
+    // const filteredList = episodeList
+    //   ? episodeList.filter(
+    //       episode =>
+    //         episode.title.toLowerCase().includes(filterText.toLowerCase()) &&
+    //         episode.tags.toLowerCase().includes(selectedTag.toLowerCase())
+    //     )
+    //   : [];
 
     const setSelectedEpisode = index => {
       setSelectedIndex(index);
@@ -100,6 +111,14 @@ class PostListing extends React.Component {
     const handleSelectChange = (event, data) => {
       setSelectedTag(data.value);
     };
+
+    const handleNavigate = (episodeNumber) => {
+      if (episodeNumber) {
+        navigate(episodeSlugs[episodeNumber])
+      } else {
+        navigate('000-show-preview')
+      }
+    }
 
     const tagOptions = tags
       ? tags.map(value => {
@@ -111,7 +130,7 @@ class PostListing extends React.Component {
       : [];
     return (
       <EpisodeContainer>
-        <FilterBox>
+        {/* <FilterBox>
           <Input
             onChange={handleFilterChange}
             value={filterText}
@@ -127,28 +146,26 @@ class PostListing extends React.Component {
             selection
             placeholder="Topics"
           />
-        </FilterBox>
+        </FilterBox> */}
 
-        {filteredList &&
-          filteredList.map((episode, index) => (
+        {/* Bring back filteredList for filtering */}
+        {allFeedOverlapPodcast &&
+          allFeedOverlapPodcast.edges.map(({ node }, index) => (
             <Episode
-              degree={episode.degree}
-              color={episode.color}
-              key={episode.title}
-              selected={index === selectedIndex}
-              onClick={() => {
-                setSelectedEpisode(index);
-              }}
+              color={getColor(node.itunes.episode)}
+              key={node.title}
+              selected={feedOverlapPodcast.title === node.title}
+              onClick={() => handleNavigate(node.itunes.episode)}
             >
               <div className="numberWrapper">
                 <span className="number">
-                  {formatEpisodeNumber(episode.episode)}
+                  {formatEpisodeNumber(node.itunes.episode)}
                 </span>
               </div>
               <div className="detailWrapper">
-                <h4>{episode.title}</h4>
+                <h4>{node.title}</h4>
                 <TagRow>
-                  {episode.tags.split(",").map(tag => (
+                  {node.itunes.keywords.split(",").map(tag => (
                     <Label
                       basic={!(selectedTag === tag.trim())}
                       circular

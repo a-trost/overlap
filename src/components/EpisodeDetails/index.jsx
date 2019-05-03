@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Button, Icon, Label } from "semantic-ui-react";
 import styled from "styled-components";
 import moment from "moment";
-import { formatSeconds, formatEpisodeNumber } from "../../utils";
-import ContextConsumer from "../Context";
+import { formatSeconds, formatEpisodeNumber, getColor } from "../../utils";
 
 const Episode = styled.article`
   grid-area: episode-details;
@@ -50,7 +49,7 @@ const Header = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 50px;
+  font-size: 45px;
   line-break: normal;
   margin: 0;
   font-weight: 700;
@@ -58,9 +57,9 @@ const Title = styled.h2`
   color: #444;
   font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  letter-spacing: -2px;
+  letter-spacing: -1.5px;
   @media all and (max-width: 650px) {
-    font-size: 34px;
+    font-size: 30px;
   }
 `;
 
@@ -71,7 +70,7 @@ const EpisodeInfo = styled.div`
   color: #666;
   .info {
     display: flex;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1.5rem;
     flex-flow: column wrap;
     align-items: center;
     justify-content: center;
@@ -137,91 +136,75 @@ const TagRow = styled.div`
 
 export default class EpisodeDetails extends Component {
   render() {
-    // const {
-    //   episodeList,
-    //   selectedIndex,
-    //   setPlayingIndex,
-    //   setSelectedTag,
-    //   selectedTag
-    // } = this.props;
-    const selectedIndex = 0;
-    
-    // const selectedEpisode = data.episodeList[selectedIndex];
+    console.log("Episode Details", this);
+    const {
+      setPlayingEpisode,
+      setSelectedTag,
+      selectedTag,
+      feedOverlapPodcast,
+      markdownRemark
+    } = this.props;
 
     return (
-      <ContextConsumer>
-        {({ data, set }) => (
-          <Episode>
-            {() => {console.log(data)}}
-            {data.episodeList[selectedIndex] && (
-              <>
-                <Header
-                  degree={data.episodeList[selectedIndex].degree}
-                  color={data.episodeList[selectedIndex].color}
-                >
-                  <div className="numberWrapper">
-                    <h4>{formatEpisodeNumber(data.episodeList[selectedIndex].episode)}</h4>
-                  </div>
-                  <Title>{data.episodeList[selectedIndex].title}</Title>
-                </Header>
-                <EpisodeInfo>
-                  <Button
-                    className="button"
-                    size="small"
-                    onClick={() => {
-                      setPlayingIndex(data.selectedIndex);
-                    }}
-                    icon
-                    labelPosition="left"
-                  >
-                    <Icon name="play" />
-                    Play Episode
-                    {formatEpisodeNumber(data.episodeList[selectedIndex].episode)}
-                  </Button>
+      <Episode>
+        <Header color={getColor(feedOverlapPodcast.itunes.episode)}>
+          <div className="numberWrapper">
+            <h4>{formatEpisodeNumber(feedOverlapPodcast.itunes.episode)}</h4>
+          </div>
+          <Title>{feedOverlapPodcast.title}</Title>
+        </Header>
+        <EpisodeInfo>
+          <Button
+            className="button"
+            size="small"
+            onClick={() => {
+              setPlayingEpisode(feedOverlapPodcast.itunes.episode);
+            }}
+            icon
+            labelPosition="left"
+            color="yellow"
+          >
+            <Icon name="play" />
+            Play Episode{" "}
+            {formatEpisodeNumber(feedOverlapPodcast.itunes.episode)}
+          </Button>
 
-                  <Button
-                    className="button"
-                    size="small"
-                    href={data.episodeList[selectedIndex].mp3Url}
-                    icon
-                    labelPosition="left"
-                  >
-                    <Icon name="download" />
-                    Download Episode
-                  </Button>
-                  <div className="info">
-                    <span className="title">Published</span>
-                    <span>
-                      {moment(data.episodeList[selectedIndex].date).format("MMM Do YYYY")}
-                    </span>
-                  </div>
-                  <div className="info">
-                    <span className="title">Length</span>
-                    <span>{formatSeconds(data.episodeList[selectedIndex].trackLength)}</span>
-                  </div>
-                </EpisodeInfo>
-                <TagRow>
-                  <span>Episode Tags:</span>
-                  {data.episodeList[selectedIndex].tags.split(",").map(tag => (
-                    <Label
-                      as="button"
-                      onClick={() => setSelectedTag(tag.trim())}
-                      key={tag}
-                      color={selectedTag === tag.trim() ? "yellow" : ""}
-                      className="episodeTag"
-                    >
-                      {tag.trim()}
-                    </Label>
-                  ))}
-                </TagRow>
-                {/* <ShowNotes
-              dangerouslySetInnerHTML={createMarkup(selectedEpisode.showNotes)}
-            /> */}
-              </>
-            )}
-          </Episode>
-        )}
-      </ContextConsumer>
+          <Button
+            className="button"
+            size="small"
+            href={feedOverlapPodcast.enclosure.url}
+            icon
+            labelPosition="left"
+          >
+            <Icon name="download" />
+            Download Episode
+          </Button>
+          <div className="info">
+            <span className="title">Published</span>
+            <span>
+              {moment(feedOverlapPodcast.isoDate).format("MMM Do YYYY")}
+            </span>
+          </div>
+          <div className="info">
+            <span className="title">Length</span>
+            <span>{formatSeconds(feedOverlapPodcast.itunes.duration)}</span>
+          </div>
+        </EpisodeInfo>
+        <TagRow>
+          <span>Episode Tags:</span>
+          {feedOverlapPodcast.itunes.keywords.split(",").map(tag => (
+            <Label
+              as="button"
+              onClick={() => setSelectedTag(tag.trim())}
+              key={tag}
+              color={selectedTag === tag.trim() ? "yellow" : ""}
+              className="episodeTag"
+            >
+              {tag.trim()}
+            </Label>
+          ))}
+        </TagRow>
+      </Episode>
     );
   }
 }
