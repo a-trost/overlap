@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Icon } from "semantic-ui-react";
 import ReactPlayer from "react-player";
 import Duration from "./duration";
+import { formatEpisodeNumber } from "../../utils";
 import logo from "../../../static/images/overlapLogoNoTagline.svg";
 
 const playIcon = (
@@ -253,7 +254,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playingIndex: 0,
+      playingEpisode: 0,
       url: null,
       pip: false,
       playing: true,
@@ -266,7 +267,8 @@ class App extends Component {
       duration: 0,
       playbackRate: 1.0,
       loop: false,
-      title: ""
+      title: "",
+      episodes: {}
     };
   }
 
@@ -366,23 +368,37 @@ class App extends Component {
     this.player = player;
   };
 
+  indexEpisodes(episodes) {
+    episodes.forEach(episode => {
+      const episodes = this.state.episodes;
+      const data = {
+        title: `${formatEpisodeNumber(episode.node.itunes.episode)} - ${
+          episode.node.title
+        }`,
+        mp3Url: episode.node.enclosure.url,
+        duration: episode.node.itunes.duration
+      };
+      episodes[
+        episode.node.itunes.episode ? episode.node.itunes.episode : "0"
+      ] = data;
+      this.setState({ episodes });
+    });
+  }
+
   componentDidMount() {
+    this.indexEpisodes(this.props.allFeedOverlapPodcast.edges);
     this.setState({ playing: false });
-    this.load(this.props.episodeList[0]);
+    console.log("HEYYYYY", this.props);
+    this.load(this.state.episodes[this.props.playingEpisode]);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.playingIndex !== this.state.playingIndex) {
-      this.setState(
-        {
-          playingIndex: nextProps.playingIndex
-        },
-        data => {
-          this.load(this.props.episodeList[this.state.playingIndex]);
-        }
-      );
-      this.onPlay();
+    console.log("GOT PROPS ");
+    if (nextProps.playingEpisode !== this.props.playingEpisode) {
+      console.log("GOT PROPS2 ", this.props.playingEpisode);
+      this.load(this.state.episodes[this.props.playingEpisode]);
     }
+    this.onPlay();
   }
 
   render() {
