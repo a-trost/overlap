@@ -28,7 +28,7 @@ class Index extends React.Component {
             {/* <EpisodeDetails
               episodeList={episodeList}
               selectedIndex={selectedIndex}
-              setPlayingIndex={this.setPlayingIndex}
+              setPlayingEpisode={this.setPlayingEpisode}
               setSelectedTag={this.setSelectedTag}
               selectedTag={selectedTag}
             />
