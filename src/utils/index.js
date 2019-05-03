@@ -18,9 +18,8 @@ export const randomDegree = () => {
   return degree;
 };
 
-export const getColor = (index, length) => {
+export const getColor = episode => {
   const colors = ["#F5C043", "#B2301A", "#5FA790", "#D73721"];
-  const episode = length - index;
   return colors[episode % 4];
 };
 
