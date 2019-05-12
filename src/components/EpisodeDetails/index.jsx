@@ -136,7 +136,6 @@ const TagRow = styled.div`
 
 export default class EpisodeDetails extends Component {
   render() {
-    console.log("Episode Details", this);
     const {
       setPlayingEpisode,
       setSelectedTag,
