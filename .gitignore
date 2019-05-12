@@ -60,3 +60,6 @@ bundle-stats.json
 src/templates/backupcategory.j
 src/templates/backup.j
 gnbackup.js
+
+# Webstorm
+.idea
