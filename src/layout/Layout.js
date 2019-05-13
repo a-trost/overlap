@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Helmet from "react-helmet";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
@@ -57,27 +57,29 @@ const Inner = styled.div`
   }
 `;
 
-// export default class MainLayout extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
+export default function Example({ children, context }) {
+  // const [initialized, setInitialized] = useState(false);
+  // const [scrolled, setScrolled] = useState(false);
 
-//   componentDidMount() {
-//     document.addEventListener("scroll", this.trackScrolling);
-//   }
+  // useEffect(() => {
+  //   if (!initialized) {
+  //     document.addEventListener("scroll", trackScrolling);
+  //     setInitialized(true);
+  //   }
+  // });
 
-//   trackScrolling = () => {
-//     try {
-//       const wrappedElement = document.getElementById("player");
-//       const { scrolled } = this.state;
-//       if (wrappedElement.getBoundingClientRect().top <= 0 !== scrolled) {
-//         this.setState({ scrolled: !scrolled });
-//       }
-//     } catch {
-//       console.log("Something went wrong");
-//     }
-//   };
-export default ({ children, context }) => {
+  // const trackScrolling = () => {
+  //   try {
+  //     const wrappedElement = document.getElementById("player");
+  //     if (wrappedElement.getBoundingClientRect().top <= 0 !== scrolled) {
+  //       setScrolled(!scrolled);
+  //       console.log(initialized);
+  //     }
+  //   } catch {
+  //     console.log("Something went wrong");
+  //   }
+  // };
+
   const data = useStaticQuery(
     graphql`
       query {
@@ -108,9 +110,9 @@ export default ({ children, context }) => {
       }
     `
   );
-  if (context.episodeList.length === 0) {
-    context.setInitialData(data);
-  }
+  // if (context.episodeList.length === 0) {
+  //   context.setInitialData(data);
+  // }
   return (
     <Outer>
       <Inner>
@@ -130,4 +132,4 @@ export default ({ children, context }) => {
       <Footer />
     </Outer>
   );
-};
+}
