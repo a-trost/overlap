@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { graphql, navigate } from "gatsby";
 import styled from "styled-components";
+import Helmet from "react-helmet";
 import { Menu, Segment } from "semantic-ui-react";
 import EpisodeDetails from "../../containers/episodeDetails";
 import { formatEpisodeNumber } from "../../utils";
@@ -46,6 +47,15 @@ export default class ShowNotes extends Component {
     console.log("Transcript Loaded", this);
     return (
       <Body>
+        <Helmet>
+          <title>
+            {feedOverlapPodcast.title} -{" "}
+            {markdownRemark.frontmatter.type === "transcript"
+              ? "Transcript"
+              : "Show Notes"}{" "}
+            - The Overlap Podcast
+          </title>
+        </Helmet>
         <Container>
           <EpisodeDetails
             markdownRemark={markdownRemark}
