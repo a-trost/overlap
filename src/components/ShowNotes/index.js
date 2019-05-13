@@ -27,24 +27,47 @@ const Container = styled.div`
   flex-flow: column nowrap;
 `;
 
+function doesTranscriptExist({ frontmatter: { episode } }, { edges }) {
+  for (let edge in edges) {
+    if (
+      edges[edge].node.frontmatter.episode === episode &&
+      edges[edge].node.frontmatter.type === "transcript"
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
 export default class ShowNotes extends Component {
-  handleMenuClick = (e, data) => {
-    e.preventDefault();
-    if (data.name === "transcript") {
-      navigate(`${this.props.data.markdownRemark.frontmatter.slug}/transcript`);
-    } else if (data.name === "showNotes") {
-      navigate(`${this.props.data.markdownRemark.frontmatter.slug}`);
+  handleMenuClick = (type, markdownRemark) => {
+    if (type === "transcript") {
+      navigate(`${markdownRemark.frontmatter.slug}/transcript`);
+    } else if (type === "showNotes") {
+      navigate(`${markdownRemark.frontmatter.slug}`);
     }
   };
 
   render() {
-    const {
+    let markdownRemark,
+      feedOverlapPodcast,
+      allFeedOverlapPodcast,
+      allMarkdownRemark;
+    if (this.props.home) {
+      ({
+        markdownRemark,
+        feedOverlapPodcast,
+        allFeedOverlapPodcast,
+        allMarkdownRemark
+      } = this.props);
+    } else {
+      ({
       markdownRemark,
       feedOverlapPodcast,
       allFeedOverlapPodcast,
       allMarkdownRemark
-    } = this.props.data;
-    console.log("Transcript Loaded", this);
+      } = this.props.data);
+    }
     return (
       <Body>
         <Helmet>
@@ -65,17 +88,21 @@ export default class ShowNotes extends Component {
             <Menu.Item
               name="showNotes"
               active={markdownRemark.frontmatter.type === "notes"}
-              onClick={this.handleMenuClick}
+              onClick={() => this.handleMenuClick("showNotes", markdownRemark)}
             >
               Show Notes
             </Menu.Item>
+            {doesTranscriptExist(markdownRemark, allMarkdownRemark) && (
             <Menu.Item
               name="transcript"
               active={markdownRemark.frontmatter.type === "transcript"}
-              onClick={this.handleMenuClick}
+                onClick={() =>
+                  this.handleMenuClick("transcript", markdownRemark)
+                }
             >
               Transcript
             </Menu.Item>
+            )}
           </Menu>
           <Segment attached="bottom">
             <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
