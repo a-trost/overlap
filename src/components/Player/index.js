@@ -257,7 +257,7 @@ class App extends Component {
       playingEpisode: 0,
       url: null,
       pip: false,
-      playing: true,
+      playing: false,
       controls: false,
       light: false,
       volume: 1,
@@ -278,7 +278,8 @@ class App extends Component {
       played: 0,
       loaded: 0,
       pip: false,
-      title: title
+      title: title,
+      playing: false
     });
   };
   playPause = () => {
@@ -303,11 +304,9 @@ class App extends Component {
   };
 
   onPlay = () => {
-    // console.log("onPlay");
     this.setState({ playing: true });
   };
   onPause = () => {
-    // console.log("onPause");
     this.setState({ playing: false });
   };
   onSeekMouseDown = e => {
@@ -323,7 +322,6 @@ class App extends Component {
     this.player.seekTo(location); //seconds
   };
   onProgress = state => {
-    // console.log("onProgress", state);
     // We only want to update time slider if we are not currently seeking
 
     if (!this.state.seeking) {
@@ -331,11 +329,9 @@ class App extends Component {
     }
   };
   onEnded = () => {
-    // console.log("onEnded");
     this.setState({ playing: this.state.loop });
   };
   onDuration = duration => {
-    // console.log("onDuration", duration);
     this.setState({ duration });
   };
   renderLoadButton = track => {
@@ -368,8 +364,8 @@ class App extends Component {
     this.player = player;
   };
 
-  indexEpisodes(episodes) {
-    episodes.forEach(episode => {
+  indexEpisodes(allEpisodes) {
+    allEpisodes.forEach(episode => {
       const episodes = this.state.episodes;
       const data = {
         title: `${formatEpisodeNumber(episode.node.itunes.episode)} - ${
@@ -383,22 +379,19 @@ class App extends Component {
       ] = data;
       this.setState({ episodes });
     });
+    // console.log("EPISODES", this.state.episodes);
   }
 
   componentDidMount() {
     this.indexEpisodes(this.props.allFeedOverlapPodcast.edges);
-    this.setState({ playing: false });
-    console.log("HEYYYYY", this.props);
-    this.load(this.state.episodes[this.props.playingEpisode]);
+    this.load(this.state.episodes[Object.keys(this.state.episodes).length - 1]);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("GOT PROPS ");
     if (nextProps.playingEpisode !== this.props.playingEpisode) {
-      console.log("GOT PROPS2 ", this.props.playingEpisode);
-      this.load(this.state.episodes[this.props.playingEpisode]);
+      this.load(this.state.episodes[nextProps.playingEpisode]);
+      this.onPlay();
     }
-    this.onPlay();
   }
 
   render() {
