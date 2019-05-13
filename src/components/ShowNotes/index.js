@@ -65,10 +65,10 @@ export default class ShowNotes extends Component {
       } = this.props);
     } else {
       ({
-      markdownRemark,
-      feedOverlapPodcast,
-      allFeedOverlapPodcast,
-      allMarkdownRemark
+        markdownRemark,
+        feedOverlapPodcast,
+        allFeedOverlapPodcast,
+        allMarkdownRemark
       } = this.props.data);
     }
     return (
@@ -96,15 +96,15 @@ export default class ShowNotes extends Component {
               Show Notes
             </Menu.Item>
             {doesTranscriptExist(markdownRemark, allMarkdownRemark) && (
-            <Menu.Item
-              name="transcript"
-              active={markdownRemark.frontmatter.type === "transcript"}
+              <Menu.Item
+                name="transcript"
+                active={markdownRemark.frontmatter.type === "transcript"}
                 onClick={() =>
                   this.handleMenuClick("transcript", markdownRemark)
                 }
-            >
-              Transcript
-            </Menu.Item>
+              >
+                Transcript
+              </Menu.Item>
             )}
           </Menu>
           <Segment attached="bottom">
@@ -173,6 +173,7 @@ export const query = graphql`
           frontmatter {
             episode
             slug
+            type
           }
         }
       }
