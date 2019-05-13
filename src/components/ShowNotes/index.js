@@ -25,6 +25,9 @@ const Body = styled.div`
 const Container = styled.div`
   grid-area: episode-details;
   flex-flow: column nowrap;
+  .content p {
+    line-height: 1.5;
+  }
 `;
 
 function doesTranscriptExist({ frontmatter: { episode } }, { edges }) {
@@ -105,7 +108,10 @@ export default class ShowNotes extends Component {
             )}
           </Menu>
           <Segment attached="bottom">
-            <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
+            <div
+              className="content"
+              dangerouslySetInnerHTML={{ __html: markdownRemark.html }}
+            />
           </Segment>
         </Container>
         <PostListing
