@@ -31,7 +31,6 @@ const Episode = styled.div`
   }
   .numberWrapper {
     display: flex;
-    padding: 0;
     justify-content: center;
     align-items: center;
     padding: 1rem 0.5rem;
@@ -50,6 +49,7 @@ const Episode = styled.div`
     }
   }
   .detailWrapper {
+    padding-left: 0.5rem;
     width: 100%;
     h4 {
       margin: 0;
@@ -112,13 +112,20 @@ class PostListing extends React.Component {
       setSelectedTag(data.value);
     };
 
-    const handleNavigate = (episodeNumber) => {
+    const handleNavigate = episodeNumber => {
       if (episodeNumber) {
-        navigate(episodeSlugs[episodeNumber])
+        navigate(episodeSlugs[episodeNumber]);
       } else {
-        navigate('000-show-preview')
+        navigate("000-show-preview");
       }
-    }
+    };
+
+    const Header = styled.div`
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 0.5rem 1rem;
+      color: #555;
+    `;
 
     const tagOptions = tags
       ? tags.map(value => {
@@ -149,6 +156,9 @@ class PostListing extends React.Component {
         </FilterBox> */}
 
         {/* Bring back filteredList for filtering */}
+        <Header>
+          <h5>Episodes</h5>
+        </Header>
         {allFeedOverlapPodcast &&
           allFeedOverlapPodcast.edges.map(({ node }, index) => (
             <Episode
