@@ -4,7 +4,6 @@ import { Consumer } from "../../store/createContext";
 import EpisodeDetails from "../../components/EpisodeDetails";
 
 const EpisodeDetailsContainer = ({ markdownRemark, feedOverlapPodcast }) => {
-  console.log("Boo boo", markdownRemark, feedOverlapPodcast);
   return (
     <Consumer>
       {({ selectedTag, setSelectedTag, setPlayingEpisode }) => (
