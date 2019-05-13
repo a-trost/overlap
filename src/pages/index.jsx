@@ -10,11 +10,15 @@ import EpisodeDetails from "../components/EpisodeDetails";
 import LinkButtons from "../components/LinkButtons";
 import Footer from "../components/Footer/Footer";
 import logo from "../../static/images/header-logo.svg";
+import ShowNotes from "../components/ShowNotes";
 
-
+const getNewestEpisode = ({ edges }) => {
+  return Math.max(...edges.map(edge => Number(edge.node.itunes.episode)));
+};
 
 class Index extends React.Component {
   render() {
+    const { allFeedOverlapPodcast, allMarkdownRemark } = this.props.data;
     // const {
     //   episodeList,
     //   selectedIndex,
@@ -23,27 +27,13 @@ class Index extends React.Component {
     //   tags,
     // } = this.state;
     return (
-      <>
-       
-            {/* <EpisodeDetails
-              episodeList={episodeList}
-              selectedIndex={selectedIndex}
-              setPlayingEpisode={this.setPlayingEpisode}
-              setSelectedTag={this.setSelectedTag}
-              selectedTag={selectedTag}
-            />
-            <PostListing
-              tags={tags}
-              setSelectedIndex={this.setSelectedIndex}
-              setSelectedTag={this.setSelectedTag}
-              selectedTag={selectedTag}
-              selectedIndex={selectedIndex}
-              episodeList={episodeList}
-              filterText={filterText}
-              handleFilterChange={this.handleFilterChange}
-            /> */}
-  Home!
-      </>
+      <ShowNotes
+        home
+        markdownRemark={allMarkdownRemark.edges[0].node}
+        feedOverlapPodcast={allFeedOverlapPodcast.edges[0].node}
+        allFeedOverlapPodcast={allFeedOverlapPodcast}
+        allMarkdownRemark={allMarkdownRemark}
+      />
     );
   }
 }
@@ -53,7 +43,7 @@ export default Index;
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
   query IndexQuery {
-    allFeedOverlapPodcast {
+    allFeedOverlapPodcast(sort: { order: DESC, fields: [itunes___episode] }) {
       edges {
         node {
           title
@@ -72,6 +62,18 @@ export const pageQuery = graphql`
           enclosure {
             url
             length
+            type
+          }
+        }
+      }
+    }
+    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___episode] }) {
+      edges {
+        node {
+          html
+          frontmatter {
+            episode
+            slug
             type
           }
         }
