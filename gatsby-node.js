@@ -1,74 +1,71 @@
 const path = require("path");
 
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
+exports.createPages = async function({ graphql, actions: { createPage } }) {
+  // const { createPage } = actions;
 
-  return new Promise((resolve, reject) => {
-    graphql(`
-      query EpisodeQuery {
-        allFeedOverlapPodcast {
-          edges {
-            node {
-              title
-              isoDate
-              content {
-                encoded
-              }
-              itunes {
-                duration
-                episode
-                keywords
-              }
-              enclosure {
-                url
-              }
+  await graphql(`
+    query EpisodeQuery {
+      allFeedOverlapPodcast {
+        edges {
+          node {
+            title
+            isoDate
+            content {
+              encoded
             }
-          }
-        }
-        allMarkdownRemark {
-          edges {
-            node {
-              html
-              frontmatter {
-                type
-                episode
-                slug
-              }
+            itunes {
+              duration
+              episode
+              keywords
+            }
+            enclosure {
+              url
             }
           }
         }
       }
-    `).then(results => {
-      const trackData = {};
-      const noteData = [];
-
-      results.data.allFeedOverlapPodcast.edges.forEach(({ node }) => {
-        const episode = node.itunes.episode !== "" ? node.itunes.episode : "0";
-        trackData[episode] = {
-          url: node.enclosure.url
-        };
-      });
-
-      results.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        noteData.push({
-          slug: node.frontmatter.slug,
-          type: node.frontmatter.type,
-          episode: node.frontmatter.episode
-        });
-      });
-      noteData.forEach(({ type, slug, episode }) => {
-        const slugPath = `${slug}${type === "transcript" ? "/transcript" : ""}`;
-        createPage({
-          path: slugPath,
-          component: path.resolve("./src/components/ShowNotes/index.js"),
-          context: {
-            slug,
-            type,
-            ...trackData[episode]
+      allMarkdownRemark {
+        edges {
+          node {
+            html
+            frontmatter {
+              type
+              episode
+              slug
+            }
           }
-        });
+        }
+      }
+    }
+  `).then(results => {
+    const trackData = {};
+    const noteData = [];
+
+    results.data.allFeedOverlapPodcast.edges.forEach(({ node }) => {
+      const episode = node.itunes.episode !== "" ? node.itunes.episode : "0";
+      trackData[episode] = {
+        url: node.enclosure.url
+      };
+    });
+
+    results.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      noteData.push({
+        slug: node.frontmatter.slug,
+        type: node.frontmatter.type,
+        episode: node.frontmatter.episode
       });
     });
-    resolve();
+    noteData.forEach(({ type, slug, episode }) => {
+      const slugPath = `${slug}${type === "transcript" ? "/transcript" : ""}`;
+      createPage({
+        path: slugPath,
+        component: path.resolve("./src/components/ShowNotes/index.js"),
+        context: {
+          slug,
+          type,
+          ...trackData[episode]
+        }
+      });
+    });
   });
 };
