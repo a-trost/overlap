@@ -40,7 +40,6 @@ class Index extends React.Component {
 
 export default Index;
 
-/* eslint no-undef: "off" */
 export const pageQuery = graphql`
   query IndexQuery {
     allFeedOverlapPodcast(sort: { order: DESC, fields: [itunes___episode] }) {

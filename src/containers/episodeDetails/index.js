@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import { Consumer } from "../../store/createContext";
 import EpisodeDetails from "../../components/EpisodeDetails";

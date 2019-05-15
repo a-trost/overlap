@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import React, { Component } from "react";
 import { graphql, navigate } from "gatsby";
 import styled from "styled-components";
