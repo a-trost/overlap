@@ -110,9 +110,6 @@ export default function Example({ children, context }) {
       }
     `
   );
-  // if (context.episodeList.length === 0) {
-  //   context.setInitialData(data);
-  // }
   return (
     <Outer>
       <Inner>

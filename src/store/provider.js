@@ -1,13 +1,10 @@
-/* eslint-disable react/no-unused-state */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Provider } from "./createContext";
-import { randomDegree, getColor } from "../utils";
+// import { randomDegree, getColor } from "../utils";
 
 const defaultContextValue = {
-  episodeList: [],
   tags: [],
-  selectedIndex: 0,
   playingEpisode: 0,
   selectedTag: "",
   filterText: "",
@@ -19,54 +16,22 @@ class AppProvider extends Component {
   constructor() {
     super();
     this.setData = this.setData.bind(this);
-    this.getEpisodeList = this.getEpisodeList.bind(this);
+    // this.getEpisodeList = this.getEpisodeList.bind(this);
     this.compileTags = this.compileTags.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
-    this.setSelectedIndex = this.setSelectedIndex.bind(this);
+    // this.setSelectedIndex = this.setSelectedIndex.bind(this);
     this.setPlayingEpisode = this.setPlayingEpisode.bind(this);
     this.setSelectedTag = this.setSelectedTag.bind(this);
-    this.setInitialData = this.setInitialData.bind(this);
     this.state = {
       ...defaultContextValue,
       set: this.setData,
-      getEpisodeList: this.getEpisodeList,
+      // getEpisodeList: this.getEpisodeList,
       compileTags: this.compileTags,
       handleFilterChange: this.handleFilterChange,
-      setSelectedIndex: this.setSelectedIndex,
+      // setSelectedIndex: this.setSelectedIndex,
       setPlayingEpisode: this.setPlayingEpisode,
-      setSelectedTag: this.setSelectedTag,
-      setInitialData: this.setInitialData
+      setSelectedTag: this.setSelectedTag
     };
-  }
-
-  getEpisodeList(data) {
-    const episodeList = [];
-    const episodeEdges = data.allFeedOverlapPodcast.edges;
-    episodeEdges.forEach(({ node }, index) => {
-      this.compileTags(node.itunes.keywords.split(","));
-      episodeList.push({
-        title: node.title,
-        episode: node.itunes.episode,
-        mp3Url: node.enclosure.url,
-        trackLength: node.itunes.duration,
-        date: node.isoDate,
-        tags: node.itunes.keywords,
-        degree: randomDegree(),
-        color: getColor(index, episodeEdges.length)
-      });
-    });
-    this.setState({ episodeList });
-  }
-
-  setInitialData(initialData) {
-    this.getEpisodeList(initialData);
-
-    // this.setState(state => ({
-    //   data: {
-    //     ...state.data,
-    //     ...newData
-    //   }
-    // }));
   }
 
   setData(newData) {
@@ -86,9 +51,9 @@ class AppProvider extends Component {
     }
   }
 
-  setSelectedIndex(index) {
-    this.setState({ selectedIndex: index });
-  }
+  // setSelectedIndex(index) {
+  //   this.setState({ selectedIndex: index });
+  // }
 
   setPlayingEpisode(episode) {
     this.setState({ playingEpisode: episode });

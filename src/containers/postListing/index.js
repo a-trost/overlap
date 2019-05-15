@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import { Consumer } from "../../store/createContext";
 import PostListing from "../../components/PostListing/PostListing";
@@ -10,19 +9,10 @@ const PostListingContainer = ({
   allMarkdownRemark
 }) => (
   <Consumer>
-    {({
-      episodeList,
-      selectedIndex,
-      selectedTag,
-      setSelectedTag,
-      setSelectedIndex
-    }) => (
+    {({ selectedTag, setSelectedTag }) => (
       <PostListing
-        episodeList={episodeList}
-        selectedIndex={selectedIndex}
         selectedTag={selectedTag}
         setSelectedTag={setSelectedTag}
-        setSelectedIndex={setSelectedIndex}
         markdownRemark={markdownRemark}
         feedOverlapPodcast={feedOverlapPodcast}
         allFeedOverlapPodcast={allFeedOverlapPodcast}

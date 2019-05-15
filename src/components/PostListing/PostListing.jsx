@@ -76,13 +76,10 @@ const TagRow = styled.div`
 class PostListing extends React.Component {
   render() {
     const {
-      episodeList,
-      setSelectedIndex,
-      selectedIndex,
-      filterText,
+      // filterText,
       selectedTag,
       setSelectedTag,
-      handleFilterChange,
+      // handleFilterChange,
       tags,
       markdownRemark,
       feedOverlapPodcast,
@@ -103,14 +100,6 @@ class PostListing extends React.Component {
     //         episode.tags.toLowerCase().includes(selectedTag.toLowerCase())
     //     )
     //   : [];
-
-    const setSelectedEpisode = index => {
-      setSelectedIndex(index);
-    };
-
-    const handleSelectChange = (event, data) => {
-      setSelectedTag(data.value);
-    };
 
     const handleNavigate = episodeNumber => {
       if (episodeNumber) {
@@ -135,6 +124,7 @@ class PostListing extends React.Component {
           }
         })
       : [];
+      
     return (
       <EpisodeContainer>
         {/* <FilterBox>
