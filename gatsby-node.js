@@ -1,8 +1,6 @@
 const path = require("path");
 
 exports.createPages = async function({ graphql, actions: { createPage } }) {
-  // const { createPage } = actions;
-
   await graphql(`
     query EpisodeQuery {
       allFeedOverlapPodcast {
@@ -59,7 +57,7 @@ exports.createPages = async function({ graphql, actions: { createPage } }) {
       const slugPath = `${slug}${type === "transcript" ? "/transcript" : ""}`;
       createPage({
         path: slugPath,
-        component: path.resolve("./src/components/ShowNotes/index.js"),
+        component: path.resolve("./src/templates/shownotes.js"),
         context: {
           slug,
           type,

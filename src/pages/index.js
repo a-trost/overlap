@@ -10,7 +10,7 @@ import EpisodeDetails from "../components/EpisodeDetails";
 import LinkButtons from "../components/LinkButtons";
 import Footer from "../components/Footer/Footer";
 import logo from "../../static/images/header-logo.svg";
-import ShowNotes from "../components/ShowNotes";
+import ShowNotes from "../templates/shownotes";
 
 const getNewestEpisode = ({ edges }) => {
   return Math.max(...edges.map(edge => Number(edge.node.itunes.episode)));

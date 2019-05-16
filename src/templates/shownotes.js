@@ -3,9 +3,9 @@ import { graphql, navigate } from "gatsby";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import { Menu, Segment } from "semantic-ui-react";
-import EpisodeDetails from "../../containers/episodeDetails";
-import { formatEpisodeNumber } from "../../utils";
-import PostListing from "../../containers/postListing";
+import EpisodeDetails from "../containers/episodeDetails";
+import { formatEpisodeNumber } from "../utils";
+import PostListing from "../containers/postListing";
 
 const Body = styled.div`
   display: grid;
@@ -26,6 +26,8 @@ const Container = styled.div`
   flex-flow: column nowrap;
   .content p {
     line-height: 1.5;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 `;
 
