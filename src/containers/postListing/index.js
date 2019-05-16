@@ -9,7 +9,12 @@ const PostListingContainer = ({
   allMarkdownRemark
 }) => (
   <Consumer>
-    {({ selectedTag, setSelectedTag }) => (
+    {(
+      { selectedTag, setSelectedTag } = {
+        selectedTag: "",
+        setSelectedTag: ""
+      }
+    ) => (
       <PostListing
         selectedTag={selectedTag}
         setSelectedTag={setSelectedTag}

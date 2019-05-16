@@ -1,10 +1,17 @@
 import React from "react";
-import { Consumer } from "../../store/createContext";
+import Provider, { Consumer } from "../../store/createContext";
 import Player from "../../components/Player";
 
-const PlayerContainer = ({ allFeedOverlapPodcast }) => (
+const PlayerContainer = ({ allFeedOverlapPodcast, pageContext }) => (
   <Consumer>
-    {({ playingEpisode, selectedTag, setSelectedTag, setPlayingEpisode }) => (
+    {(
+      { playingEpisode, selectedTag, setSelectedTag, setPlayingEpisode } = {
+        playingEpisode: 5,
+        selectedTag: "",
+        setSelectedTag: "",
+        setPlayingEpisode: ""
+      }
+    ) => (
       <Player
         selectedTag={selectedTag}
         setSelectedTag={setSelectedTag}

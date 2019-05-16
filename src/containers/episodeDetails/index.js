@@ -5,7 +5,13 @@ import EpisodeDetails from "../../components/EpisodeDetails";
 const EpisodeDetailsContainer = ({ markdownRemark, feedOverlapPodcast }) => {
   return (
     <Consumer>
-      {({ selectedTag, setSelectedTag, setPlayingEpisode }) => (
+      {(
+        { selectedTag, setSelectedTag, setPlayingEpisode } = {
+          selectedTag: "",
+          setSelectedTag: "",
+          setPlayingEpisode: ""
+        }
+      ) => (
         <EpisodeDetails
           selectedTag={selectedTag}
           setSelectedTag={setSelectedTag}
