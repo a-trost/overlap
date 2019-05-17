@@ -57,7 +57,7 @@ const Inner = styled.div`
   }
 `;
 
-export default function Example({ children, context }) {
+export default function Layout({ children, context }) {
   // const [initialized, setInitialized] = useState(false);
   // const [scrolled, setScrolled] = useState(false);
 
