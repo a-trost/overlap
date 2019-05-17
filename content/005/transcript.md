@@ -1,7 +1,7 @@
 ---
-episode: "5"
-type: "transcript"
-slug: "005-focus-for-designers-and-developers"
+# episode: "5"
+# type: "transcript"
+# slug: "005-focus-for-designers-and-developers"
 ---
 
 Alright! The Overlap is a show about the intersection of design and front end development. I'm Alex, a front end developer from new haven, Connecticut. And with me as always is my cousin and cohost L.

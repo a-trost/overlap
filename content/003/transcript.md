@@ -1,7 +1,7 @@
 ---
-episode: "3"
-type: "transcript"
-slug: "003-react"
+# episode: "3"
+# type: "transcript"
+# slug: "003-react"
 ---
 
 All right. Hey, good morning and welcome to the pod. Today we're going to be doing a deep dive in to what?

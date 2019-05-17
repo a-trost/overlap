@@ -1,7 +1,7 @@
 ---
-episode: "2"
-type: "transcript"
-slug: "002-print-tips-for-developers"
+# episode: "2"
+# type: "transcript"
+# slug: "002-print-tips-for-developers"
 ---
 
 All right. Hey, good morning and welcome to the pod. Today we're going to be doing a deep dive in to what?

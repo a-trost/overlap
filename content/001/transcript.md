@@ -1,7 +1,7 @@
 ---
-episode: "1"
-slug: "001-pricing-structures"
-type: "transcript"
+# episode: "1"
+# slug: "001-pricing-structures"
+# type: "transcript"
 ---
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
