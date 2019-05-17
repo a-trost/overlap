@@ -76,30 +76,29 @@ const TagRow = styled.div`
 class EpisodeListing extends React.Component {
   render() {
     const {
-      // filterText,
+      filterText,
       selectedTag,
       setSelectedTag,
-      // handleFilterChange,
+      handleFilterChange,
       tags,
-      markdownRemark,
       feedOverlapPodcast,
       allFeedOverlapPodcast,
-      allMarkdownRemark
+      allMarkdownRemark,
+      compileTags
     } = this.props;
-
     const episodeSlugs = {};
+
     allMarkdownRemark.edges.forEach(({ node }) => {
       episodeSlugs[node.frontmatter.episode] = node.frontmatter.slug;
     });
 
-    // * Bring this back when you bring back the filter features
-    // const filteredList = episodeList
-    //   ? episodeList.filter(
-    //       episode =>
-    //         episode.title.toLowerCase().includes(filterText.toLowerCase()) &&
-    //         episode.tags.toLowerCase().includes(selectedTag.toLowerCase())
-    //     )
-    //   : [];
+    allFeedOverlapPodcast.edges.forEach(({ node }) => {
+      compileTags(node.itunes.keywords);
+    });
+
+    const handleSelectChange = (e, j) => {
+      setSelectedTag(j.value);
+    };
 
     const handleNavigate = episodeNumber => {
       if (episodeNumber) {
@@ -108,13 +107,6 @@ class EpisodeListing extends React.Component {
         navigate("000-show-preview");
       }
     };
-
-    const Header = styled.div`
-      background-color: #fff;
-      border-bottom: 1px solid #eee;
-      padding: 0.5rem 1rem;
-      color: #555;
-    `;
 
     const tagOptions = tags
       ? tags.map(value => {
@@ -127,7 +119,7 @@ class EpisodeListing extends React.Component {
 
     return (
       <EpisodeContainer>
-        {/* <FilterBox>
+        <FilterBox>
           <Input
             onChange={handleFilterChange}
             value={filterText}
@@ -143,43 +135,46 @@ class EpisodeListing extends React.Component {
             selection
             placeholder="Topics"
           />
-        </FilterBox> */}
-
-        {/* Bring back filteredList for filtering */}
-        <Header>
-          <h5>Episodes</h5>
-        </Header>
+        </FilterBox>
         {allFeedOverlapPodcast &&
-          allFeedOverlapPodcast.edges.map(({ node }, index) => (
-            <Episode
-              color={getColor(node.itunes.episode)}
-              key={node.title}
-              selected={feedOverlapPodcast.title === node.title}
-              onClick={() => handleNavigate(node.itunes.episode)}
-            >
-              <div className="numberWrapper">
-                <span className="number">
-                  {formatEpisodeNumber(node.itunes.episode)}
-                </span>
-              </div>
-              <div className="detailWrapper">
-                <h4>{node.title}</h4>
-                <TagRow>
-                  {node.itunes.keywords.split(",").map(tag => (
-                    <Label
-                      basic={!(selectedTag === tag.trim())}
-                      circular
-                      size="tiny"
-                      color={selectedTag === tag.trim() ? "yellow" : ""}
-                      key={tag}
-                      content={tag.trim()}
-                      className="episodeTag"
-                    />
-                  ))}
-                </TagRow>
-              </div>
-            </Episode>
-          ))}
+          allFeedOverlapPodcast.edges
+            .filter(
+              ({ node }) =>
+                node.title.toLowerCase().includes(filterText.toLowerCase()) &&
+                node.itunes.keywords
+                  .toLowerCase()
+                  .includes(selectedTag.toLowerCase())
+            )
+            .map(({ node }, index) => (
+              <Episode
+                color={getColor(node.itunes.episode)}
+                key={node.title}
+                selected={feedOverlapPodcast.title === node.title}
+                onClick={() => handleNavigate(node.itunes.episode)}
+              >
+                <div className="numberWrapper">
+                  <span className="number">
+                    {formatEpisodeNumber(node.itunes.episode)}
+                  </span>
+                </div>
+                <div className="detailWrapper">
+                  <h4>{node.title}</h4>
+                  <TagRow>
+                    {node.itunes.keywords.split(",").map(tag => (
+                      <Label
+                        basic={!(selectedTag === tag.trim())}
+                        circular
+                        size="tiny"
+                        color={selectedTag === tag.trim() ? "yellow" : ""}
+                        key={tag}
+                        content={tag.trim()}
+                        className="episodeTag"
+                      />
+                    ))}
+                  </TagRow>
+                </div>
+              </Episode>
+            ))}
       </EpisodeContainer>
     );
   }

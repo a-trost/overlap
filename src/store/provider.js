@@ -16,19 +16,15 @@ class AppProvider extends Component {
   constructor() {
     super();
     this.setData = this.setData.bind(this);
-    // this.getEpisodeList = this.getEpisodeList.bind(this);
     this.compileTags = this.compileTags.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
-    // this.setSelectedIndex = this.setSelectedIndex.bind(this);
     this.setPlayingEpisode = this.setPlayingEpisode.bind(this);
     this.setSelectedTag = this.setSelectedTag.bind(this);
     this.state = {
       ...defaultContextValue,
       set: this.setData,
-      // getEpisodeList: this.getEpisodeList,
       compileTags: this.compileTags,
       handleFilterChange: this.handleFilterChange,
-      // setSelectedIndex: this.setSelectedIndex,
       setPlayingEpisode: this.setPlayingEpisode,
       setSelectedTag: this.setSelectedTag
     };
@@ -51,10 +47,6 @@ class AppProvider extends Component {
     }
   }
 
-  // setSelectedIndex(index) {
-  //   this.setState({ selectedIndex: index });
-  // }
-
   setPlayingEpisode(episode) {
     this.setState({ playingEpisode: episode });
   }
@@ -63,7 +55,8 @@ class AppProvider extends Component {
     this.setState({ filterText: event.target.value });
   }
 
-  compileTags(tagList) {
+  compileTags(keywordString) {
+    const tagList = keywordString.split(",");
     tagList.forEach(tag => {
       const { tags } = this.state;
       const thisTag = tag.trim();

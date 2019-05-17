@@ -3,22 +3,35 @@ import { Consumer } from "../../store/createContext";
 import EpisodeListing from "../../components/EpisodeListing";
 
 const EpisodeListingContainer = ({
-  markdownRemark,
   feedOverlapPodcast,
   allFeedOverlapPodcast,
   allMarkdownRemark
 }) => (
   <Consumer>
     {(
-      { selectedTag, setSelectedTag } = {
+      {
+        selectedTag,
+        setSelectedTag,
+        filterText,
+        handleFilterChange,
+        tags,
+        compileTags
+      } = {
         selectedTag: "",
-        setSelectedTag: ""
+        setSelectedTag: () => {},
+        filterText: "",
+        handleFilterChange: () => {},
+        tags: [],
+        compileTags: () => {}
       }
     ) => (
       <EpisodeListing
         selectedTag={selectedTag}
         setSelectedTag={setSelectedTag}
-        markdownRemark={markdownRemark}
+        filterText={filterText}
+        handleFilterChange={handleFilterChange}
+        tags={tags}
+        compileTags={compileTags}
         feedOverlapPodcast={feedOverlapPodcast}
         allFeedOverlapPodcast={allFeedOverlapPodcast}
         allMarkdownRemark={allMarkdownRemark}
