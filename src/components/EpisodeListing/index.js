@@ -74,6 +74,12 @@ const TagRow = styled.div`
 `;
 
 class EpisodeListing extends React.Component {
+  componentDidMount() {
+    this.props.allFeedOverlapPodcast.edges.forEach(({ node }) => {
+      this.props.compileTags(node.itunes.keywords);
+    });
+  }
+
   render() {
     const {
       filterText,
@@ -83,17 +89,12 @@ class EpisodeListing extends React.Component {
       tags,
       feedOverlapPodcast,
       allFeedOverlapPodcast,
-      allMarkdownRemark,
-      compileTags
+      allMarkdownRemark
     } = this.props;
     const episodeSlugs = {};
 
     allMarkdownRemark.edges.forEach(({ node }) => {
       episodeSlugs[node.frontmatter.episode] = node.frontmatter.slug;
-    });
-
-    allFeedOverlapPodcast.edges.forEach(({ node }) => {
-      compileTags(node.itunes.keywords);
     });
 
     const handleSelectChange = (e, j) => {
