@@ -2,7 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import styled from "styled-components";
-import PostListing from "../components/PostListing/PostListing";
+import EpisodeListing from "../components/EpisodeListing";
 import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
 import Player from "../components/Player";

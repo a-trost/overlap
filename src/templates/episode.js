@@ -2,7 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import Layout from "../layout";
-import PostListing from "../components/PostListing/PostListing";
+import EpisodeListing from "../components/EpisodeListing/index";
 import config from "../../data/SiteConfig";
 
 export default class TagTemplate extends React.Component {
@@ -13,10 +13,12 @@ export default class TagTemplate extends React.Component {
       <Layout>
         <div className="tag-container">
           <Helmet title={`Posts tagged as "${tag}" | ${config.siteTitle}`} />
-          <PostListing postEdges={postEdges} />
-        <div className="container">
-          <p className="body"><span className="highlight"></span></p>
-        </div>
+          <EpisodeListing postEdges={postEdges} />
+          <div className="container">
+            <p className="body">
+              <span className="highlight" />
+            </p>
+          </div>
         </div>
       </Layout>
     );

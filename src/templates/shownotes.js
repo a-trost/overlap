@@ -5,7 +5,7 @@ import Helmet from "react-helmet";
 import { Menu, Segment } from "semantic-ui-react";
 import EpisodeDetails from "../containers/episodeDetails";
 import { formatEpisodeNumber } from "../utils";
-import PostListing from "../containers/postListing";
+import EpisodeListing from "../containers/episodeListing";
 
 const Body = styled.div`
   display: grid;
@@ -28,6 +28,13 @@ const Container = styled.div`
     line-height: 1.5;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    em {
+      color: #999;
+      font-size: 14px;
+      padding: 0 0.5rem;
+    }
+    strong {
+    }
   }
 `;
 
@@ -110,12 +117,16 @@ export default class ShowNotes extends Component {
           </Menu>
           <Segment attached="bottom">
             <div
-              className="content"
+              className={
+                markdownRemark.frontmatter.type === "transcript"
+                  ? "transcript content"
+                  : "notes content"
+              }
               dangerouslySetInnerHTML={{ __html: markdownRemark.html }}
             />
           </Segment>
         </Container>
-        <PostListing
+        <EpisodeListing
           allMarkdownRemark={allMarkdownRemark}
           markdownRemark={markdownRemark}
           feedOverlapPodcast={feedOverlapPodcast}

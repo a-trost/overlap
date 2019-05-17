@@ -73,7 +73,7 @@ const TagRow = styled.div`
   }
 `;
 
-class PostListing extends React.Component {
+class EpisodeListing extends React.Component {
   render() {
     const {
       // filterText,
@@ -124,7 +124,7 @@ class PostListing extends React.Component {
           }
         })
       : [];
-      
+
     return (
       <EpisodeContainer>
         {/* <FilterBox>
@@ -185,4 +185,4 @@ class PostListing extends React.Component {
   }
 }
 
-export default PostListing;
+export default EpisodeListing;

@@ -1,8 +1,8 @@
 import React from "react";
 import { Consumer } from "../../store/createContext";
-import PostListing from "../../components/PostListing/PostListing";
+import EpisodeListing from "../../components/EpisodeListing";
 
-const PostListingContainer = ({
+const EpisodeListingContainer = ({
   markdownRemark,
   feedOverlapPodcast,
   allFeedOverlapPodcast,
@@ -15,7 +15,7 @@ const PostListingContainer = ({
         setSelectedTag: ""
       }
     ) => (
-      <PostListing
+      <EpisodeListing
         selectedTag={selectedTag}
         setSelectedTag={setSelectedTag}
         markdownRemark={markdownRemark}
@@ -27,4 +27,4 @@ const PostListingContainer = ({
   </Consumer>
 );
 
-export default PostListingContainer;
+export default EpisodeListingContainer;
