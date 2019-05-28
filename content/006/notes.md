@@ -11,7 +11,9 @@ On this episode, we talk about the creative brief, an essential document that ca
 Kicking off a new project? Try using a creative brief to guide your conversation and ask your client the right questions.
 
 Creative briefs can be used for any collaborative creative work and are a great project management tool.
+
 ## Resources
 Building an Effective Creative Brief Template: https://www.wrike.com/blog/creative-brief-template-elements-effective-brief/
+
 How to write an effective design brief: examples and a free template to get you started:
 https://www.canva.com/learn/effective-design-brief/
