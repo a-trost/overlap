@@ -53,7 +53,6 @@ export const pageQuery = graphql`
           itunes {
             summary
             duration
-            image
             episode
             season
             keywords

@@ -94,7 +94,6 @@ export default function Layout({ children, context }) {
               itunes {
                 summary
                 duration
-                image
                 episode
                 season
                 keywords

@@ -15,7 +15,6 @@ exports.createPages = async function({ graphql, actions: { createPage } }) {
               duration
               episode
               keywords
-              image
             }
             enclosure {
               url
