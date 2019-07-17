@@ -53,7 +53,7 @@ module.exports = {
     {
       resolve: `gatsby-source-rss-feed`,
       options: {
-        url: `https://feeds.buzzsprout.com/255972.rss`, // Overlap
+        url: `https://feeds.buzzsprout.com/255972.rss`,
         name: `OverlapPodcast`
       }
     },
@@ -126,81 +126,6 @@ module.exports = {
       }
     },
     "gatsby-plugin-remove-serviceworker",
-    // THIS CREATES THE RSS FEED FOR THIS SITE
-    // {
-    //   resolve: "gatsby-plugin-feed",
-    //   options: {
-    //     setup(ref) {
-    //       const ret = ref.query.site.siteMetadata.rssMetadata;
-    //       ret.allMarkdownRemark = ref.query.allMarkdownRemark;
-    //       ret.generator = "GatsbyJS Advanced Starter";
-    //       return ret;
-    //     },
-    //     query: `
-    //     {
-    //       site {
-    //         siteMetadata {
-    //           rssMetadata {
-    //             site_url
-    //             feed_url
-    //             title
-    //             description
-    //             image_url
-    //             copyright
-    //           }
-    //         }
-    //       }
-    //     }
-    //   `,
-    //     feeds: [
-    //       {
-    //         serialize(ctx) {
-    //           const { rssMetadata } = ctx.query.site.siteMetadata;
-    //           return ctx.query.allMarkdownRemark.edges.map(edge => ({
-    //             categories: edge.node.frontmatter.tags,
-    //             date: edge.node.fields.date,
-    //             title: edge.node.frontmatter.title,
-    //             description: edge.node.excerpt,
-    //             url: rssMetadata.site_url + edge.node.fields.slug,
-    //             guid: rssMetadata.site_url + edge.node.fields.slug,
-    //             custom_elements: [
-    //               { "content:encoded": edge.node.html },
-    //               { author: config.userEmail }
-    //             ]
-    //           }));
-    //         },
-    //         query: `
-    //         {
-    //           allMarkdownRemark(
-    //             limit: 1000,
-    //             sort: { order: DESC, fields: [fields___date] },
-    //           ) {
-    //             edges {
-    //               node {
-    //                 excerpt
-    //                 html
-    //                 timeToRead
-    //                 fields {
-    //                   slug
-    //                   date
-    //                 }
-    //                 frontmatter {
-    //                   title
-    //                   cover
-    //                   date
-    //                   category
-    //                   tags
-    //                 }
-    //               }
-    //             }
-    //           }
-    //         }
-    //       `,
-    //         output: config.siteRss
-    //       }
-    //     ]
-    //   }
-    // },
     `gatsby-plugin-netlify`
   ]
 };
