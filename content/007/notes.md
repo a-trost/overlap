@@ -8,11 +8,18 @@ Typography: So hip right now, but what is it? This week, we are talking type. It
 
 Resources:
 Font pairing:
+
 https://fonts.google.com/featured/Five+Fresh+Headline+and+Body+Text+Pairings
+
 https://www.typewolf.com/
+
 Chiller: https://fontzone.net/font-details/chiller
+
 Criteria: https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html
+
 Tool: https://webaim.org/resources/contrastchecker/https://material.io/design/typography/understanding-typography.html
+
 Vertical Rhythm:
 http://typecast.com/blog/4-simple-steps-to-vertical-rhythm
+
 Framer: https://www.framer.com
