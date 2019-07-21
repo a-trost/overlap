@@ -19,7 +19,7 @@ export const randomDegree = () => {
 };
 
 export const getColor = episode => {
-  const colors = ["#F5C043", "#B2301A", "#5FA790", "#D73721"];
+  const colors = ["#F5C043", "#B2301A", "#07B1AA", "#D73721"];
   return colors[episode % 4];
 };
 
