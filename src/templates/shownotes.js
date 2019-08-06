@@ -4,7 +4,6 @@ import styled from "styled-components";
 import Helmet from "react-helmet";
 import { Menu, Segment } from "semantic-ui-react";
 import EpisodeDetails from "../containers/episodeDetails";
-import { formatEpisodeNumber } from "../utils";
 import EpisodeListing from "../containers/episodeListing";
 
 const Body = styled.div`
