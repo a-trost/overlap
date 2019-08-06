@@ -7,7 +7,7 @@ slug: "005-focus-for-designers-and-developers"
 One thing that can set creatives apart is their ability to focus. The developer or designer who can focus with full energy on one task at a time will be able to get through difficult problems faster and more effectively than their unfocused colleagues. On this episode, we talk about how to find focus and avoid distractions to help you get things done.
 
 
-Resources:
+## Resources
 
 Pomodoro method https://francescocirillo.com/pages/pomodoro-technique
 

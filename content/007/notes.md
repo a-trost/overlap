@@ -6,7 +6,7 @@ slug: "007-typography-basics"
 
 Typography: So hip right now, but what is it? This week, we are talking type. It's more than just clickity clackity typey typey onto your keyboard. It's part science, part art, part dumb jokes about fonts. Join us for our spooky typography party!
 
-Resources:
+## Resources
 
 [Font pairing](https://fonts.google.com/featured/Five+Fresh+Headline+and+Body+Text+Pairings)
 

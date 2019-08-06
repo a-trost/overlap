@@ -8,7 +8,7 @@ Print's not dead! On this episode, we talk about why color looks different on sc
 
 If you're a developer, being able to order print can help you deepen existing client partnerships and land new projects. If you're new to print design, we've got some helpful hints on how to navigate the jargon-filled world of print.
 
-Resources:
+## Resources
 
 Online print vendors: smartpress.com + stationeryhq.com
 

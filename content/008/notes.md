@@ -6,7 +6,7 @@ slug: "008-static-site-generators"
 
 Static Site Generators are way cooler than they sound! Learn about the coolest way to build a fast website and save your money. Plus, we talk about Alex's new rug in everyone's favorite podcast game: Guess The Rug. 
 
-Resources:
+## Resources
 Gatsby: [https://www.gatsbyjs.org/](https://www.gatsbyjs.org/)
 
 Hugo: [https://gohugo.io/](https://gohugo.io/)
