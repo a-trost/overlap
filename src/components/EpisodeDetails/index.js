@@ -49,11 +49,11 @@ const Header = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 45px;
+  font-size: 42px;
   line-break: normal;
   margin: 0;
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.25;
   color: #444;
   font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
