@@ -140,8 +140,7 @@ export default class EpisodeDetails extends Component {
       setPlayingEpisode,
       setSelectedTag,
       selectedTag,
-      feedOverlapPodcast,
-      markdownRemark
+      feedOverlapPodcast
     } = this.props;
 
     return (
