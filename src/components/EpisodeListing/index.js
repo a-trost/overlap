@@ -115,6 +115,7 @@ class EpisodeListing extends React.Component {
             const viewValue = value[0].toUpperCase() + value.slice(1);
             return { key: value, text: viewValue, value };
           }
+          return null;
         })
       : [];
 
@@ -139,6 +140,10 @@ class EpisodeListing extends React.Component {
         </FilterBox>
         {allFeedOverlapPodcast &&
           allFeedOverlapPodcast.edges
+            .sort(
+              (a, b) =>
+                Number(b.node.itunes.episode) - Number(a.node.itunes.episode)
+            )
             .filter(
               ({ node }) =>
                 node.title.toLowerCase().includes(filterText.toLowerCase()) &&
