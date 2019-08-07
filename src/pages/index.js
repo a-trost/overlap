@@ -1,15 +1,5 @@
 import React from "react";
-import Helmet from "react-helmet";
 import { graphql } from "gatsby";
-import styled from "styled-components";
-import EpisodeListing from "../components/EpisodeListing";
-import SEO from "../components/SEO/SEO";
-import config from "../../data/SiteConfig";
-import Player from "../components/Player";
-import EpisodeDetails from "../components/EpisodeDetails";
-import LinkButtons from "../components/LinkButtons";
-import Footer from "../components/Footer/Footer";
-import logo from "../../static/images/header-logo.svg";
 import ShowNotes from "../templates/shownotes";
 
 const getNewestEpisode = ({ edges }) => {
@@ -19,18 +9,19 @@ const getNewestEpisode = ({ edges }) => {
 class Index extends React.Component {
   render() {
     const { allFeedOverlapPodcast, allMarkdownRemark } = this.props.data;
-    // const {
-    //   episodeList,
-    //   selectedIndex,
-    //   selectedTag,
-    //   filterText,
-    //   tags,
-    // } = this.state;
+
+    const sortedPodcast = allFeedOverlapPodcast.edges.sort(
+      (a, b) => Number(b.node.itunes.episode) - Number(a.node.itunes.episode)
+    );
+    const sortedMarkdown = allMarkdownRemark.edges.sort(
+      (a, b) =>
+        Number(b.node.frontmatter.episode) - Number(a.node.frontmatter.episode)
+    );
     return (
       <ShowNotes
         home
-        markdownRemark={allMarkdownRemark.edges[0].node}
-        feedOverlapPodcast={allFeedOverlapPodcast.edges[0].node}
+        markdownRemark={sortedMarkdown[0].node}
+        feedOverlapPodcast={sortedPodcast[0].node}
         allFeedOverlapPodcast={allFeedOverlapPodcast}
         allMarkdownRemark={allMarkdownRemark}
       />
