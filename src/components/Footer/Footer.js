@@ -140,9 +140,9 @@ class Footer extends Component {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://twitter.com/mistertrost"
+                  href="https://twitter.com/TrostCodes"
                 >
-                  @mistertrost
+                  @TrostCodes
                 </a>
                 <a
                   target="_blank"
