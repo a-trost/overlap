@@ -34,7 +34,7 @@
     "gatsby-source-rss-feed": "^1.1.1",
     "gatsby-transformer-remark": "2.2.0",
     "gatsby-transformer-sharp": "^2.2.5",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.21",
     "moment": "^2.23.0",
     "prismjs": "^1.15.0",
     "prop-types": "^15.7.2",
